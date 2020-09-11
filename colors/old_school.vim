@@ -1,13 +1,15 @@
 " This colorscheme is a long time of tweaks and updates on my previous
 " colorscheme of choice 'https://github.com/sainnhe/edge'.
 
+let g:colors_name = 'old_school'
+
 function! s:highlight(name, fg, bg, ...)
   let hl = [
     \ 'highlight' , a:name,
     \ 'guifg='    , a:fg,
     \ 'guibg='    , a:bg,
-    \ 'gui=NONE',
-    \ 'cterm=NONE',
+    \ 'gui='      , (a:0 >= 1 ? a:1 : 'none'),
+    \ 'cterm='    , (a:0 >= 1 ? a:1 : 'none')
     \ ]
   execute join(hl, ' ')
 endfunction
@@ -71,7 +73,7 @@ call s:highlight('ModeMsg', s:palette.fg, s:palette.none, 'bold')
 call s:highlight('MoreMsg', s:palette.green1, s:palette.none, 'bold')
 call s:highlight('IncSearch', s:palette.bg, s:palette.bg_red)
 call s:highlight('Search', s:palette.bg, s:palette.bg_green)
-call s:highlight('MatchParen', s:palette.none, s:palette.bg)
+call s:highlight('MatchParen', s:palette.white1, s:palette.red1, 'bold,underline')
 call s:highlight('NonText', s:palette.bg2, s:palette.none)
 call s:highlight('Whitespace', s:palette.bg, s:palette.none)
 call s:highlight('SpecialKey', s:palette.fg, s:palette.bg)
