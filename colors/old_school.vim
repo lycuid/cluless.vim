@@ -18,6 +18,7 @@ endfunction
 
 let s:palette = {
   \ 'darkgrey':   ['#101010', '233'],
+  \ 'comment':    ['#353535', '240'],
   \ 'grey1':      ['#7f8490', '248'],
   \ 'grey2':      ['#828a98', '248'],
   \ 'black1':     ['#090909', '0'],
@@ -90,7 +91,7 @@ call s:highlight('TabLine', s:palette.white1, s:palette.black1)
 call s:highlight('TabLineFill', s:palette.grey1, s:palette.black1)
 call s:highlight('TabLineSel', s:palette.black1, s:palette.magenta2)
 call s:highlight('VertSplit', s:palette.white1, s:palette.none)
-call s:highlight('Visual', s:palette.white2, s:palette.black2, 'bold')
+call s:highlight('Visual', s:palette.none, s:palette.black2,)
 call s:highlight('VisualNOS', s:palette.none, s:palette.black1, 'italic')
 call s:highlight('QuickFixLine', s:palette.magenta1, s:palette.none, 'bold')
 call s:highlight('Debug', s:palette.yellow1, s:palette.none)
@@ -141,8 +142,8 @@ call s:highlight('Title', s:palette.magenta1, s:palette.none, 'bold')
 call s:highlight('StorageClass', s:palette.green1, s:palette.none)
 call s:highlight('Tag', s:palette.magenta1, s:palette.none)
 call s:highlight('Delimiter', s:palette.green1, s:palette.none)
-call s:highlight('Comment', s:palette.black2, s:palette.none)
-call s:highlight('SpecialComment', s:palette.black2, s:palette.none)
+call s:highlight('Comment', s:palette.comment, s:palette.none)
+call s:highlight('SpecialComment', s:palette.comment, s:palette.none)
 call s:highlight('Todo', s:palette.magenta1, s:palette.none, 'italic')
 call s:highlight('Ignore', s:palette.grey1, s:palette.none)
 call s:highlight('Underlined', s:palette.none, s:palette.none, 'underline')
@@ -432,52 +433,8 @@ highlight! link helpCommand Purple
 highlight! link helpHeadline Purple
 highlight! link helpHeader Green2
 
-" vim-plug
-call s:highlight('plug1', s:palette.magenta1, s:palette.none, 'bold')
-call s:highlight('plugNumber', s:palette.green1, s:palette.none, 'bold')
-highlight! link plug2 Green1
-highlight! link plugBracket Green2
-highlight! link plugName Blue1
-highlight! link plugDash Green2
-highlight! link plugNotLoaded Grey
-highlight! link plugH2 Green2
-highlight! link plugMessage Green2
-highlight! link plugError Red
-highlight! link plugRelDate Grey
-highlight! link plugStar Purple
-highlight! link plugUpdate Green1
-highlight! link plugDeleted Grey
-highlight! link plugEdge Purple
-
 " GitGutter
-call s:highlight('GitGutterAdd', s:palette.green2, s:palette.black1)
-call s:highlight('GitGutterChange', s:palette.blue1, s:palette.black1)
-call s:highlight('GitGutterDelete', s:palette.white2, s:palette.black1)
-call s:highlight('GitGutterChangeDelete', s:palette.magenta1, s:palette.black1)
-
-" CtrlP
-call s:highlight('CtrlPMatch', s:palette.green1, s:palette.none, 'bold')
-call s:highlight('CtrlPPrtBase', s:palette.grey2, s:palette.none)
-call s:highlight('CtrlPLinePre', s:palette.grey2, s:palette.none)
-call s:highlight('CtrlPMode1', s:palette.blue1, s:palette.darkgrey, 'bold')
-call s:highlight('CtrlPMode2', s:palette.darkgrey, s:palette.blue1, 'bold')
-call s:highlight('CtrlPStats', s:palette.grey1, s:palette.darkgrey, 'bold')
-highlight! link CtrlPNoEntries Red
-highlight! link CtrlPPrtCursor Green2
-
-" NERDTree
-highlight! link NERDTreeDir White1
-highlight! link NERDTreeDirSlash Green1
-highlight! link NERDTreeOpenable Green2
-highlight! link NERDTreeClosable Green2
-highlight! link NERDTreeFile Fg
-highlight! link NERDTreeExecFile Red
-highlight! link NERDTreeUp Grey
-highlight! link NERDTreeCWD Purple
-highlight! link NERDTreeHelp Grey
-highlight! link NERDTreeToggleOn Blue1
-highlight! link NERDTreeToggleOff Red
-highlight! link NERDTreeFlags Green2
-highlight! link NERDTreeLinkFile Grey
-highlight! link NERDTreeLinkTarget Blue1
-
+call s:highlight('GitGutterAdd', s:palette.green1, s:palette.black1)
+call s:highlight('GitGutterChange', s:palette.yellow2, s:palette.black1)
+call s:highlight('GitGutterDelete', s:palette.red2, s:palette.black1)
+call s:highlight('GitGutterChangeDelete', s:palette.white1, s:palette.black1)
