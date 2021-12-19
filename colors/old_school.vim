@@ -438,3 +438,14 @@ call s:highlight('GitGutterAdd', s:palette.green1, s:palette.black1)
 call s:highlight('GitGutterChange', s:palette.yellow2, s:palette.black1)
 call s:highlight('GitGutterDelete', s:palette.red2, s:palette.black1)
 call s:highlight('GitGutterChangeDelete', s:palette.white1, s:palette.black1)
+
+if exists("g:transparent_bg") && g:transparent_bg==1
+  hi! Normal        ctermbg=NONE guibg=NONE
+  hi! LineNr        ctermbg=NONE guibg=NONE
+  hi! VertSplit     ctermbg=NONE guibg=NONE
+  hi! EndOfBuffer   ctermbg=NONE guibg=NONE
+  hi! NonText       ctermbg=NONE guibg=NONE
+  hi! SignColumn    ctermbg=NONE guibg=NONE
+  hi! CursorLine    ctermbg=NONE guibg=NONE
+  hi! CursorLineNr  ctermbg=NONE guibg=NONE
+endif
