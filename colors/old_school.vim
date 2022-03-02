@@ -41,27 +41,33 @@ let s:palette = {
   \ }
 
 call s:highlight('Normal', s:palette.white1, s:palette.black1)
-call s:highlight('Terminal', s:palette.white1, s:palette.black1)
-call s:highlight('EndOfBuffer', s:palette.white1, s:palette.black1)
-call s:highlight('FoldColumn', s:palette.grey1, s:palette.black1)
+hi! link Terminal Normal
+hi! link EndOfBuffer Normal
+hi! link SignColumn Normal
+hi! link ToolbarLine Normal
+
 call s:highlight('Folded', s:palette.grey1, s:palette.black1)
-call s:highlight('SignColumn', s:palette.white1, s:palette.black1)
-call s:highlight('ToolbarLine', s:palette.white1, s:palette.black1)
-call s:highlight('ColorColumn', s:palette.none, s:palette.darkgrey)
-call s:highlight('Conceal', s:palette.grey1, s:palette.none)
+hi! link FoldColumn Folded
+
+call s:highlight('CursorLine', s:palette.none, s:palette.darkgrey)
+hi! link ColorColumn CursorLine
+hi! link CursorColumn CursorLine
+
+hi! link Conceal Ignore
+
 call s:highlight('Cursor', s:palette.black1, s:palette.white1)
 highlight! link vCursor Cursor
 highlight! link iCursor Cursor
 highlight! link lCursor Cursor
 highlight! link CursorIM Cursor
-call s:highlight('CursorColumn', s:palette.none, s:palette.darkgrey)
-call s:highlight('CursorLine', s:palette.none, s:palette.darkgrey)
 call s:highlight('LineNr', s:palette.black2, s:palette.none)
 call s:highlight('CursorLineNr', s:palette.white1, s:palette.darkgrey)
+
 call s:highlight('DiffAdd', s:palette.none, s:palette.green1)
 call s:highlight('DiffChange', s:palette.none, s:palette.blue1)
 call s:highlight('DiffDelete', s:palette.none, s:palette.red2)
 call s:highlight('DiffText', s:palette.none, s:palette.none, 'reverse')
+
 call s:highlight('Directory', s:palette.blue1, s:palette.none)
 call s:highlight('ErrorMsg', s:palette.white2, s:palette.none, 'bold,underline')
 call s:highlight('WarningMsg', s:palette.yellow1, s:palette.none, 'bold')
@@ -84,9 +90,9 @@ call s:highlight('SpellCap', s:palette.yellow1, s:palette.none, 'undercurl', s:p
 call s:highlight('SpellLocal', s:palette.green1, s:palette.none, 'undercurl', s:palette.green1)
 call s:highlight('SpellRare', s:palette.magenta1, s:palette.none, 'undercurl', s:palette.magenta1)
 call s:highlight('StatusLine', s:palette.black1, s:palette.white1, 'bold')
-call s:highlight('StatusLineTerm', s:palette.black1, s:palette.white1, 'bold')
-call s:highlight('StatusLineNC', s:palette.white1, s:palette.darkgrey)
-call s:highlight('StatusLineTermNC', s:palette.white1, s:palette.darkgrey)
+hi! link StatusLineTerm StatusLine
+hi! link StatusLineNC CursorLineNr
+hi! link StatusLineTermNC StatusLineNC
 call s:highlight('TabLine', s:palette.white1, s:palette.black1)
 call s:highlight('TabLineFill', s:palette.grey1, s:palette.black1)
 call s:highlight('TabLineSel', s:palette.black1, s:palette.magenta2)
