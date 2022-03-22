@@ -1,457 +1,600 @@
-" This colorscheme is a long time of tweaks and updates on my previous
-" colorscheme of choice 'https://github.com/sainnhe/edge'.
+" This colorscheme is a variation on the 'Nord' colorscheme.
 
 let g:colors_name = 'old_school'
 
-function! s:highlight(name, fg, bg, ...)
-  let hl = [
-    \ 'highlight' , a:name,
-    \ 'guifg='    , a:fg[0],
-    \ 'guibg='    , a:bg[0],
-    \ 'ctermfg='  , a:fg[1],
-    \ 'ctermbg='  , a:bg[1],
-    \ 'gui='      , (a:0 >= 1 ? a:1 : 'none'),
-    \ 'cterm='    , (a:0 >= 1 ? a:1 : 'none')
-    \ ]
-  execute join(hl, ' ')
+hi clear
+if exists("syntax_on")
+  syntax reset
+endif
+
+set background=dark
+
+" let s:nord0_gui = "#2E3440"
+" let s:nord1_gui = "#3B4252"
+let s:nord0_gui     = "#090909"
+let s:nord1_gui     = "#252525"
+let s:nord2_gui     = "#434C5E"
+let s:nord3_gui     = "#4C566A"
+let s:nord_comment  = "#616E88"
+let s:nord4_gui     = "#D8DEE9"
+let s:nord5_gui     = "#E5E9F0"
+let s:nord6_gui     = "#ECEFF4"
+let s:nord7_gui     = "#8FBCBB"
+let s:nord8_gui     = "#88C0D0"
+let s:nord9_gui     = "#81A1C1"
+let s:nord10_gui    = "#5E81AC"
+let s:nord11_gui    = "#BF616A"
+let s:nord12_gui    = "#D08770"
+let s:nord13_gui    = "#EBCB8B"
+let s:nord14_gui    = "#A3BE8C"
+let s:nord15_gui    = "#B48EAD"
+
+let s:nord1_term = "0"
+let s:nord3_term = "8"
+let s:nord5_term = "7"
+let s:nord6_term = "15"
+let s:nord7_term = "14"
+let s:nord8_term = "6"
+let s:nord9_term = "4"
+let s:nord10_term = "12"
+let s:nord11_term = "1"
+let s:nord12_term = "11"
+let s:nord13_term = "3"
+let s:nord14_term = "2"
+let s:nord15_term = "5"
+
+let s:bold = "bold,"
+if !exists("g:nord_italic")
+  if has("gui_running") || $TERM_ITALICS == "true"
+    let g:nord_italic = 1
+  else
+    let g:nord_italic = 0
+  endif
+endif
+
+let s:italic = "italic,"
+let s:underline = "underline,"
+let s:italicize_comments = s:italic
+
+function! s:hi(group, guifg, guibg, ctermfg, ctermbg, attr, guisp)
+  if a:guifg != ""
+    exec "hi " . a:group . " guifg=" . a:guifg
+  endif
+  if a:guibg != ""
+    exec "hi " . a:group . " guibg=" . a:guibg
+  endif
+  if a:ctermfg != ""
+    exec "hi " . a:group . " ctermfg=" . a:ctermfg
+  endif
+  if a:ctermbg != ""
+    exec "hi " . a:group . " ctermbg=" . a:ctermbg
+  endif
+  if a:attr != ""
+    exec "hi " . a:group . " gui=" . a:attr . " cterm=" . substitute(a:attr, "undercurl", s:underline, "")
+  endif
+  if a:guisp != ""
+    exec "hi " . a:group . " guisp=" . a:guisp
+  endif
 endfunction
 
-let s:palette = {
-  \ 'darkgrey':   ['#101010', '233'],
-  \ 'comment':    ['#353535', '240'],
-  \ 'grey1':      ['#7f8490', '248'],
-  \ 'grey2':      ['#828a98', '248'],
-  \ 'black1':     ['#090909', '0'],
-  \ 'black2':     ['#252525', '8'],
-  \ 'red1':       ['#ff4d4d', '1'],
-  \ 'red2':       ['#ec7279', '9'],
-  \ 'green1':     ['#1dd1a1', '2'],
-  \ 'green2':     ['#1e824c', '10'],
-  \ 'yellow1':    ['#e9d460', '3'],
-  \ 'yellow2':    ['#f7ca18', '11'],
-  \ 'blue1':      ['#22709f', '4'],
-  \ 'blue2':      ['#6f93af', '12'],
-  \ 'magenta1':   ['#736598', '5'],
-  \ 'magenta2':   ['#d38aea', '13'],
-  \ 'cyan1':      ['#6cb6eb', '6'],
-  \ 'cyan2':      ['#8abeb7', '14'],
-  \ 'white1':     ['#a8a8a8', '7'],
-  \ 'white2':     ['#efefef', '15'],
-  \ 'none':       ['NONE', 'NONE']
-  \ }
+call s:hi("Bold", "", "", "", "", s:bold, "")
+call s:hi("Italic", "", "", "", "", s:italic, "")
+call s:hi("Underline", "", "", "", "", s:underline, "")
 
-call s:highlight('Normal', s:palette.white1, s:palette.black1)
-hi! link Terminal Normal
-hi! link EndOfBuffer Normal
-hi! link SignColumn Normal
-hi! link ToolbarLine Normal
+call s:hi("ColorColumn", "", s:nord1_gui, "NONE", s:nord1_term, "", "")
+call s:hi("Cursor", s:nord0_gui, s:nord4_gui, "", "NONE", "", "")
+call s:hi("CursorLine", "", s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
+call s:hi("Error", s:nord4_gui, s:nord11_gui, "", s:nord11_term, "", "")
+call s:hi("iCursor", s:nord0_gui, s:nord4_gui, "", "NONE", "", "")
+call s:hi("LineNr", s:nord3_gui, "NONE", s:nord3_term, "NONE", "", "")
+call s:hi("MatchParen", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "", "")
+call s:hi("NonText", s:nord2_gui, "", s:nord3_term, "", "", "")
+call s:hi("Normal", s:nord4_gui, s:nord0_gui, "NONE", "NONE", "", "")
+call s:hi("Pmenu", s:nord4_gui, s:nord2_gui, "NONE", s:nord1_term, "NONE", "")
+call s:hi("PmenuSbar", s:nord4_gui, s:nord2_gui, "NONE", s:nord1_term, "", "")
+call s:hi("PmenuSel", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "", "")
+call s:hi("PmenuThumb", s:nord8_gui, s:nord3_gui, "NONE", s:nord3_term, "", "")
+call s:hi("SpecialKey", s:nord3_gui, "", s:nord3_term, "", "", "")
+call s:hi("SpellBad", s:nord11_gui, s:nord0_gui, s:nord11_term, "NONE", "undercurl", s:nord11_gui)
+call s:hi("SpellCap", s:nord13_gui, s:nord0_gui, s:nord13_term, "NONE", "undercurl", s:nord13_gui)
+call s:hi("SpellLocal", s:nord5_gui, s:nord0_gui, s:nord5_term, "NONE", "undercurl", s:nord5_gui)
+call s:hi("SpellRare", s:nord6_gui, s:nord0_gui, s:nord6_term, "NONE", "undercurl", s:nord6_gui)
+call s:hi("Visual", "", s:nord2_gui, "", s:nord1_term, "", "")
+call s:hi("VisualNOS", "", s:nord2_gui, "", s:nord1_term, "", "")
+call s:hi("healthError", s:nord11_gui, s:nord1_gui, s:nord11_term, s:nord1_term, "", "")
+call s:hi("healthSuccess", s:nord14_gui, s:nord1_gui, s:nord14_term, s:nord1_term, "", "")
+call s:hi("healthWarning", s:nord13_gui, s:nord1_gui, s:nord13_term, s:nord1_term, "", "")
+call s:hi("TermCursorNC", "", s:nord1_gui, "", s:nord1_term, "", "")
 
-call s:highlight('Folded', s:palette.grey1, s:palette.black1)
-hi! link FoldColumn Folded
-
-call s:highlight('CursorLine', s:palette.none, s:palette.darkgrey)
-hi! link ColorColumn CursorLine
-hi! link CursorColumn CursorLine
-
-hi! link Conceal Ignore
-
-call s:highlight('Cursor', s:palette.black1, s:palette.white1)
-highlight! link vCursor Cursor
-highlight! link iCursor Cursor
-highlight! link lCursor Cursor
-highlight! link CursorIM Cursor
-call s:highlight('LineNr', s:palette.black2, s:palette.none)
-call s:highlight('CursorLineNr', s:palette.white1, s:palette.darkgrey)
-
-call s:highlight('DiffAdd', s:palette.none, s:palette.green1)
-call s:highlight('DiffChange', s:palette.none, s:palette.blue1)
-call s:highlight('DiffDelete', s:palette.none, s:palette.red2)
-call s:highlight('DiffText', s:palette.none, s:palette.none, 'reverse')
-
-call s:highlight('Directory', s:palette.blue1, s:palette.none)
-call s:highlight('ErrorMsg', s:palette.white2, s:palette.none, 'bold,underline')
-call s:highlight('WarningMsg', s:palette.yellow1, s:palette.none, 'bold')
-call s:highlight('ModeMsg', s:palette.white1, s:palette.none, 'bold')
-call s:highlight('MoreMsg', s:palette.green1, s:palette.none, 'bold')
-call s:highlight('IncSearch', s:palette.red2, s:palette.black2, 'bold,underline')
-call s:highlight('Search', s:palette.red2, s:palette.black2, 'bold,underline')
-call s:highlight('MatchParen', s:palette.white2, s:palette.red1, 'bold')
-call s:highlight('NonText', s:palette.black2, s:palette.none)
-call s:highlight('Whitespace', s:palette.black1, s:palette.none)
-call s:highlight('SpecialKey', s:palette.white1, s:palette.black1)
-call s:highlight('Pmenu', s:palette.black1, s:palette.grey1)
-call s:highlight('PmenuSbar', s:palette.none, s:palette.black1)
-call s:highlight('PmenuSel', s:palette.black1, s:palette.blue1)
-call s:highlight('WildMenu', s:palette.black1, s:palette.blue1)
-call s:highlight('PmenuThumb', s:palette.none, s:palette.grey2)
-call s:highlight('Question', s:palette.yellow1, s:palette.none)
-call s:highlight('SpellBad', s:palette.white2, s:palette.none, 'undercurl', s:palette.white2)
-call s:highlight('SpellCap', s:palette.yellow1, s:palette.none, 'undercurl', s:palette.yellow1)
-call s:highlight('SpellLocal', s:palette.green1, s:palette.none, 'undercurl', s:palette.green1)
-call s:highlight('SpellRare', s:palette.magenta1, s:palette.none, 'undercurl', s:palette.magenta1)
-call s:highlight('StatusLine', s:palette.black1, s:palette.white1, 'bold')
-hi! link StatusLineTerm StatusLine
-hi! link StatusLineNC CursorLineNr
-hi! link StatusLineTermNC StatusLineNC
-call s:highlight('TabLine', s:palette.white1, s:palette.black1)
-call s:highlight('TabLineFill', s:palette.grey1, s:palette.black1)
-call s:highlight('TabLineSel', s:palette.black1, s:palette.magenta2)
-call s:highlight('VertSplit', s:palette.white1, s:palette.none)
-call s:highlight('Visual', s:palette.none, s:palette.black2,)
-call s:highlight('VisualNOS', s:palette.none, s:palette.black1, 'italic')
-call s:highlight('QuickFixLine', s:palette.magenta1, s:palette.none, 'bold')
-call s:highlight('Debug', s:palette.yellow1, s:palette.none)
-call s:highlight('debugPC', s:palette.black1, s:palette.blue1)
-call s:highlight('debugBreakpoint', s:palette.black1, s:palette.yellow1)
-call s:highlight('ToolbarButton', s:palette.black1, s:palette.blue1)
-if has('nvim')
-  highlight! link healthError Red
-  highlight! link healthSuccess Blue1
-  highlight! link healthWarning Yellow
-  highlight! link LspDiagnosticsError Grey
-  highlight! link LspDiagnosticsWarning Grey
-  highlight! link LspDiagnosticsInformation Grey
-  highlight! link LspDiagnosticsHint Grey
-  highlight! link LspReferenceText CocHighlightText
-  highlight! link LspReferenceRead CocHighlightText
-  highlight! link LspReferenceWrite CocHighlightText
+if has('terminal')
+  let g:terminal_ansi_colors = [s:nord1_gui, s:nord11_gui, s:nord14_gui, s:nord13_gui, s:nord9_gui, s:nord15_gui, s:nord8_gui, s:nord5_gui, s:nord3_gui, s:nord11_gui, s:nord14_gui, s:nord13_gui, s:nord9_gui, s:nord15_gui, s:nord7_gui, s:nord6_gui]
 endif
 
-" Syntax
-call s:highlight('PreProc', s:palette.white2, s:palette.none)
-call s:highlight('PreCondit', s:palette.magenta1, s:palette.none)
-call s:highlight('Include', s:palette.green1, s:palette.none)
-call s:highlight('Define', s:palette.white2, s:palette.none)
-call s:highlight('Conditional', s:palette.magenta1, s:palette.none)
-call s:highlight('Repeat', s:palette.magenta1, s:palette.none)
-call s:highlight('Keyword', s:palette.white2, s:palette.none)
-call s:highlight('Typedef', s:palette.white2, s:palette.none)
-call s:highlight('Statement', s:palette.white2, s:palette.none)
-call s:highlight('Exception', s:palette.white2, s:palette.none)
-call s:highlight('Macro', s:palette.white2, s:palette.none)
-call s:highlight('Error', s:palette.white2, s:palette.none)
-call s:highlight('Label', s:palette.white2, s:palette.none)
-call s:highlight('Special', s:palette.yellow1, s:palette.none)
-call s:highlight('SpecialChar', s:palette.yellow1, s:palette.none)
-call s:highlight('Type', s:palette.yellow1, s:palette.none)
-call s:highlight('Structure', s:palette.yellow1, s:palette.none)
-call s:highlight('Boolean', s:palette.blue1, s:palette.none)
-call s:highlight('String', s:palette.green2, s:palette.none)
-call s:highlight('Character', s:palette.blue1, s:palette.none)
-call s:highlight('Number', s:palette.blue1, s:palette.none)
-call s:highlight('Float', s:palette.blue1, s:palette.none)
-call s:highlight('Identifier', s:palette.white1, s:palette.none)
-call s:highlight('Constant', s:palette.yellow1, s:palette.none)
-call s:highlight('Function', s:palette.magenta1, s:palette.none)
-call s:highlight('Operator', s:palette.green1, s:palette.none)
-call s:highlight('Title', s:palette.magenta1, s:palette.none, 'bold')
-call s:highlight('StorageClass', s:palette.green1, s:palette.none)
-call s:highlight('Tag', s:palette.magenta1, s:palette.none)
-call s:highlight('Delimiter', s:palette.green1, s:palette.none)
-call s:highlight('Comment', s:palette.comment, s:palette.none)
-call s:highlight('SpecialComment', s:palette.comment, s:palette.none)
-call s:highlight('Todo', s:palette.magenta1, s:palette.none, 'italic')
-call s:highlight('Ignore', s:palette.grey1, s:palette.none)
-call s:highlight('Underlined', s:palette.none, s:palette.none, 'underline')
+if has('nvim')
+  let g:terminal_color_0 = s:nord1_gui
+  let g:terminal_color_1 = s:nord11_gui
+  let g:terminal_color_2 = s:nord14_gui
+  let g:terminal_color_3 = s:nord13_gui
+  let g:terminal_color_4 = s:nord9_gui
+  let g:terminal_color_5 = s:nord15_gui
+  let g:terminal_color_6 = s:nord8_gui
+  let g:terminal_color_7 = s:nord5_gui
+  let g:terminal_color_8 = s:nord3_gui
+  let g:terminal_color_9 = s:nord11_gui
+  let g:terminal_color_10 = s:nord14_gui
+  let g:terminal_color_11 = s:nord13_gui
+  let g:terminal_color_12 = s:nord9_gui
+  let g:terminal_color_13 = s:nord15_gui
+  let g:terminal_color_14 = s:nord7_gui
+  let g:terminal_color_15 = s:nord6_gui
+endif
 
-" Predefined Highlight Groups
-call s:highlight('Fg', s:palette.white1, s:palette.none)
-call s:highlight('Grey', s:palette.grey1, s:palette.none)
-call s:highlight('Yellow', s:palette.yellow1, s:palette.none, 'bold')
-call s:highlight('Green1', s:palette.green1, s:palette.none)
-call s:highlight('Green2', s:palette.green2, s:palette.none)
-call s:highlight('White1', s:palette.white2, s:palette.none)
-call s:highlight('Red1', s:palette.red1, s:palette.none)
-call s:highlight('Blue1', s:palette.blue1, s:palette.none)
-call s:highlight('Blue2', s:palette.blue2, s:palette.none)
-call s:highlight('Magenta1', s:palette.magenta1, s:palette.none)
+call s:hi("DiagnosticWarn", s:nord13_gui, "", s:nord13_term, "", "", "")
+call s:hi("DiagnosticError" , s:nord11_gui, "", s:nord11_term, "", "", "")
+call s:hi("DiagnosticInfo" , s:nord8_gui, "", s:nord8_term, "", "", "")
+call s:hi("DiagnosticHint" , s:nord10_gui, "", s:nord10_term, "", "", "")
+call s:hi("DiagnosticUnderlineWarn" , s:nord13_gui, "", s:nord13_term, "", "undercurl", "")
+call s:hi("DiagnosticUnderlineError" , s:nord11_gui, "", s:nord11_term, "", "undercurl", "")
+call s:hi("DiagnosticUnderlineInfo" , s:nord8_gui, "", s:nord8_term, "", "undercurl", "")
+call s:hi("DiagnosticUnderlineHint" , s:nord10_gui, "", s:nord10_term, "", "undercurl", "")
+call s:hi("LspReferenceText", "", s:nord3_gui, "", s:nord3_term, "", "")
+call s:hi("LspReferenceRead", "", s:nord3_gui, "", s:nord3_term, "", "")
+call s:hi("LspReferenceWrite", "", s:nord3_gui, "", s:nord3_term, "", "")
+call s:hi("LspSignatureActiveParameter", s:nord8_gui, "", s:nord8_term, "", s:underline, "")
+call s:hi("CursorColumn", "", s:nord1_gui, "NONE", s:nord1_term, "", "")
+call s:hi("CursorLineNr", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
+call s:hi("Folded", s:nord3_gui, s:nord1_gui, s:nord3_term, s:nord1_term, s:bold, "")
+call s:hi("FoldColumn", s:nord3_gui, s:nord0_gui, s:nord3_term, "NONE", "", "")
+call s:hi("SignColumn", s:nord1_gui, s:nord0_gui, s:nord1_term, "NONE", "", "")
+call s:hi("Directory", s:nord8_gui, "", s:nord8_term, "NONE", "", "")
+call s:hi("EndOfBuffer", s:nord1_gui, "", s:nord1_term, "NONE", "", "")
+call s:hi("ErrorMsg", s:nord4_gui, s:nord11_gui, "NONE", s:nord11_term, "", "")
+call s:hi("ModeMsg", s:nord4_gui, "", "", "", "", "")
+call s:hi("MoreMsg", s:nord8_gui, "", s:nord8_term, "", "", "")
+call s:hi("Question", s:nord4_gui, "", "NONE", "", "", "")
+call s:hi("WarningMsg", s:nord0_gui, s:nord13_gui, s:nord1_term, s:nord13_term, "", "")
+call s:hi("WildMenu", s:nord8_gui, s:nord1_gui, s:nord8_term, s:nord1_term, "", "")
+call s:hi("IncSearch", s:nord6_gui, s:nord10_gui, s:nord6_term, s:nord10_term, s:underline, "")
+call s:hi("Search", s:nord1_gui, s:nord8_gui, s:nord1_term, s:nord8_term, "NONE", "")
+call s:hi("TabLine", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
+call s:hi("TabLineFill", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
+call s:hi("TabLineSel", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "NONE", "")
+call s:hi("Title", s:nord4_gui, "", "NONE", "", "NONE", "")
+call s:hi("VertSplit", s:nord2_gui, s:nord0_gui, s:nord3_term, "NONE", "NONE", "")
 
-" Extended File Types
-" markdown
-call s:highlight('markdownH1', s:palette.magenta1, s:palette.none, 'bold')
-call s:highlight('markdownH2', s:palette.white2, s:palette.none, 'bold')
-call s:highlight('markdownH3', s:palette.yellow1, s:palette.none, 'bold')
-call s:highlight('markdownH4', s:palette.green2, s:palette.none, 'bold')
-call s:highlight('markdownH5', s:palette.green1, s:palette.none, 'bold')
-call s:highlight('markdownH6', s:palette.blue1, s:palette.none, 'bold')
-call s:highlight('markdownUrl', s:palette.green1, s:palette.none, 'underline')
-call s:highlight('markdownItalicDelimiter', s:palette.grey1, s:palette.none, 'italic')
-call s:highlight('markdownBold', s:palette.none, s:palette.none, 'bold')
-call s:highlight('markdownItalic', s:palette.none, s:palette.none, 'italic')
-call s:highlight('mkdURL', s:palette.green2, s:palette.none, 'underline')
-call s:highlight('mkdItalic', s:palette.grey1, s:palette.none, 'italic')
-highlight! link markdownLinkText Green2
-highlight! link markdownHeadingDelimiter Grey
-highlight! link markdownIdDeclaration Green1
-highlight! link markdownId Green1
-highlight! link markdownListMarker Green1
-highlight! link markdownCodeDelimiter Green1
-highlight! link markdownCode Blue1
-highlight! link markdownBoldDelimiter Grey
-highlight! link markdownRule Purple
-highlight! link mkdLink Green2
-highlight! link mkdHeading Grey
-highlight! link mkdLinkDef Green1
-highlight! link mkdID Green1
-highlight! link mkdListItem Green1
-highlight! link mkdCodeDelimiter Green1
-highlight! link mkdCode Blue1
-highlight! link mkdBold Grey
-highlight! link mkdRule Purple
+call s:hi("Boolean", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("Character", s:nord14_gui, "", s:nord14_term, "", "", "")
+call s:hi("Comment", s:nord_comment, "", s:nord3_term, "", s:italicize_comments, "")
+call s:hi("Conceal", "", "NONE", "", "NONE", "", "")
+call s:hi("Conditional", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("Constant", s:nord4_gui, "", "NONE", "", "", "")
+call s:hi("Decorator", s:nord12_gui, "", s:nord12_term, "", "", "")
+call s:hi("Define", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("Delimiter", s:nord6_gui, "", s:nord6_term, "", "", "")
+call s:hi("Exception", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("Float", s:nord15_gui, "", s:nord15_term, "", "", "")
+call s:hi("Function", s:nord8_gui, "", s:nord8_term, "", "", "")
+call s:hi("Identifier", s:nord4_gui, "", "NONE", "", "NONE", "")
+call s:hi("Include", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("Keyword", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("Label", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("Number", s:nord15_gui, "", s:nord15_term, "", "", "")
+call s:hi("Operator", s:nord9_gui, "", s:nord9_term, "", "NONE", "")
+call s:hi("PreProc", s:nord9_gui, "", s:nord9_term, "", "NONE", "")
+call s:hi("Repeat", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("Special", s:nord4_gui, "", "NONE", "", "", "")
+call s:hi("SpecialChar", s:nord13_gui, "", s:nord13_term, "", "", "")
+call s:hi("SpecialComment", s:nord8_gui, "", s:nord8_term, "", s:italicize_comments, "")
+call s:hi("Statement", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("StorageClass", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("String", s:nord14_gui, "", s:nord14_term, "", "", "")
+call s:hi("Structure", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("Tag", s:nord4_gui, "", "", "", "", "")
+call s:hi("Todo", s:nord13_gui, "NONE", s:nord13_term, "NONE", "", "")
+call s:hi("Type", s:nord9_gui, "", s:nord9_term, "", "NONE", "")
+call s:hi("Typedef", s:nord9_gui, "", s:nord9_term, "", "", "")
+hi! link Annotation Decorator
+hi! link Macro Define
+hi! link PreCondit PreProc
+hi! link Variable Identifier
 
-" html
-call s:highlight('htmlH1', s:palette.magenta1, s:palette.none, 'bold')
-call s:highlight('htmlH2', s:palette.white2, s:palette.none, 'bold')
-call s:highlight('htmlH3', s:palette.yellow1, s:palette.none, 'bold')
-call s:highlight('htmlH4', s:palette.green1, s:palette.none, 'bold')
-call s:highlight('htmlH5', s:palette.green1, s:palette.none, 'bold')
-call s:highlight('htmlH6', s:palette.blue1, s:palette.none, 'bold')
-call s:highlight('htmlLink', s:palette.none, s:palette.none, 'underline')
-call s:highlight('htmlBold', s:palette.none, s:palette.none, 'bold')
-call s:highlight('htmlBoldUnderline', s:palette.none, s:palette.none, 'bold,underline')
-call s:highlight('htmlBoldItalic', s:palette.none, s:palette.none, 'bold,italic')
-call s:highlight('htmlBoldUnderlineItalic', s:palette.none, s:palette.none, 'bold,underline,italic')
-call s:highlight('htmlUnderline', s:palette.none, s:palette.none, 'underline')
-call s:highlight('htmlUnderlineItalic', s:palette.none, s:palette.none, 'underline,italic')
-call s:highlight('htmlItalic', s:palette.none, s:palette.none, 'italic')
+call s:hi("asciidocAttributeEntry", s:nord10_gui, "", s:nord10_term, "", "", "")
+call s:hi("asciidocAttributeList", s:nord10_gui, "", s:nord10_term, "", "", "")
+call s:hi("asciidocAttributeRef", s:nord10_gui, "", s:nord10_term, "", "", "")
+call s:hi("asciidocHLabel", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("asciidocListingBlock", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("asciidocMacroAttributes", s:nord8_gui, "", s:nord8_term, "", "", "")
+call s:hi("asciidocOneLineTitle", s:nord8_gui, "", s:nord8_term, "", "", "")
+call s:hi("asciidocPassthroughBlock", s:nord9_gui, "", s:nord9_term, "", "", "")
+call s:hi("asciidocQuotedMonospaced", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("asciidocTriplePlusPassthrough", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link asciidocAdmonition Keyword
+hi! link asciidocAttributeRef markdownH1
+hi! link asciidocBackslash Keyword
+hi! link asciidocMacro Keyword
+hi! link asciidocQuotedBold Bold
+hi! link asciidocQuotedEmphasized Italic
+hi! link asciidocQuotedMonospaced2 asciidocQuotedMonospaced
+hi! link asciidocQuotedUnconstrainedBold asciidocQuotedBold
+hi! link asciidocQuotedUnconstrainedEmphasized asciidocQuotedEmphasized
+hi! link asciidocURL markdownLinkText
 
-highlight! link htmlTag Purple
-highlight! link htmlTagN Magenta1
-highlight! link htmlTagName Magenta1
-highlight! link htmlSpecialTagName White1
-highlight! link htmlArg Green2
-highlight! link htmlEndTag Green2
+call s:hi("awkCharClass", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("awkPatterns", s:nord9_gui, "", s:nord9_term, "", s:bold, "")
+hi! link awkArrayElement Identifier
+hi! link awkBoolLogic Keyword
+hi! link awkBrktRegExp SpecialChar
+hi! link awkComma Delimiter
+hi! link awkExpression Keyword
+hi! link awkFieldVars Identifier
+hi! link awkLineSkip Keyword
+hi! link awkOperator Operator
+hi! link awkRegExp SpecialChar
+hi! link awkSearch Keyword
+hi! link awkSemicolon Delimiter
+hi! link awkSpecialCharacter SpecialChar
+hi! link awkSpecialPrintf SpecialChar
+hi! link awkVariables Identifier
 
-" xml
-highlight! link xmlTag Purple
-highlight! link xmlTagName Magenta1
-highlight! link xmlAttrib Green2
+call s:hi("cIncluded", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link cOperator Operator
+hi! link cPreCondit PreCondit
+hi! link cConstant Type
 
-" css
-highlight! link cssFunctionName Yellow
-highlight! link cssClassName Magenta1
-highlight! link cssClassNameDot Purple
-highlight! link cssAttrComma Fg
-highlight! link cssTagName Magenta1
-highlight! link cssBraces Fg
-highlight! link cssSelectorOp Fg
-highlight! link cssVendor Grey
-highlight! link cssSelectorOp2 Green2
-highlight! link cssImportant White1
+call s:hi("cmakeGeneratorExpression", s:nord10_gui, "", s:nord10_term, "", "", "")
 
-" js
-highlight! link jsGlobalNodeObjects White1
-highlight! link jsGlobalObjects Yellow
-highlight! link jsFunction Green2
-highlight! link jsOperatorKeyword White1
-highlight! link jsThis Green1
-highlight! link jsParensError Red
-highlight! link jsArrowFunction Green2
-highlight! link jsTaggedTemplate Green1
-highlight! link javaScriptReserved Magenta1
-highlight! link javaScriptBraces Fg
-highlight! link javaScriptOperator White1
-highlight! link javaScriptNull Yellow
-highlight! link javaScriptMessage Green1
-highlight! link javaScriptGlobal Green2
+hi! link csPreCondit PreCondit
+hi! link csType Type
+hi! link csXmlTag SpecialComment
 
-" ts
-highlight! link typescriptLabel Magenta1
-highlight! link typescriptExceptions White1
-highlight! link typescriptBraces Fg
-highlight! link typescriptEndColons Fg
-highlight! link typescriptParens Fg
-highlight! link typescriptDocTags Purple
-highlight! link typescriptLogicSymbols Green2
-highlight! link typescriptImport Magenta1
-highlight! link typescriptBOM Green2
-highlight! link typescriptVariableDeclaration Fg
-highlight! link typescriptVariable White1
-highlight! link typescriptExport Magenta1
-highlight! link typescriptAliasDeclaration Yellow
-highlight! link typescriptClassName Green2
-highlight! link typescriptAccessibilityModifier Magenta1
-highlight! link typescriptOperator White1
-highlight! link typescriptEnumKeyword White1
-highlight! link typescriptArrowFunc Green2
-highlight! link typescriptMethodAccessor White1
-highlight! link typescriptMember Green2
-highlight! link typescriptTypeReference Green1
-highlight! link typescriptDefault Yellow
-highlight! link typescriptTemplateSB Green1
-highlight! link typescriptArrowFuncArg Fg
-highlight! link typescriptParamImpl Blue1
-highlight! link typescriptFuncComma Fg
-highlight! link jsxOpenPunct Green2
-highlight! link typescriptCastKeyword White1
-highlight! link typescriptCall Green2
-highlight! link typescriptCase White1
+call s:hi("cssAttributeSelector", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("cssDefinition", s:nord7_gui, "", s:nord7_term, "", "NONE", "")
+call s:hi("cssIdentifier", s:nord7_gui, "", s:nord7_term, "", s:underline, "")
+call s:hi("cssStringQ", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link cssAttr Keyword
+hi! link cssBraces Delimiter
+hi! link cssClassName cssDefinition
+hi! link cssColor Number
+hi! link cssProp cssDefinition
+hi! link cssPseudoClass cssDefinition
+hi! link cssPseudoClassId cssPseudoClass
+hi! link cssVendor Keyword
 
-" python
-highlight! link pythonNone Yellow
-highlight! link pythonExClass Magenta1
-highlight! link pythonDecorator White1
-highlight! link pythonDottedName White1
+call s:hi("dosiniHeader", s:nord8_gui, "", s:nord8_term, "", "", "")
+hi! link dosiniLabel Type
 
-" go
-highlight! link goPackage Blue1
-highlight! link goImport Blue1
-highlight! link goDeclType Green1
-highlight! link goBuiltins Green1
+call s:hi("dtBooleanKey", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("dtExecKey", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("dtLocaleKey", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("dtNumericKey", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("dtTypeKey", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link dtDelim Delimiter
+hi! link dtLocaleValue Keyword
+hi! link dtTypeValue Keyword
 
-" rust
-highlight! link rustModPath Purple
-highlight! link rustAttribute Magenta1
-highlight! link rustPubScopeCrate Blue1
-highlight! link rustStructure Magenta1
-highlight! link rustSigil Green2
-highlight! link rustSelf Green1
-highlight! link rustEnumVariant Green2
-highlight! link rustDerive Purple
-highlight! link rustDeriveTrait White1
+call s:hi("DiffAdd", s:nord14_gui, s:nord0_gui, s:nord14_term, "NONE", "inverse", "")
+call s:hi("DiffChange", s:nord13_gui, s:nord0_gui, s:nord13_term, "NONE", "inverse", "")
+call s:hi("DiffDelete", s:nord11_gui, s:nord0_gui, s:nord11_term, "NONE", "inverse", "")
+call s:hi("DiffText", s:nord9_gui, s:nord0_gui, s:nord9_term, "NONE", "inverse", "")
+" Legacy groups for official git.vim and diff.vim syntax
+hi! link diffAdded DiffAdd
+hi! link diffChanged DiffChange
+hi! link diffRemoved DiffDelete
 
-" php
-highlight! link phpUseClass Green2
-highlight! link phpClass Magenta1
-highlight! link phpClassExtends Green2
-highlight! link phpParent Fg
-highlight! link phpFunction Green2
-highlight! link phpType Magenta1
-highlight! link phpMethod Yellow
-highlight! link phpMemberSelector Blue1
+call s:hi("gitconfigVariable", s:nord7_gui, "", s:nord7_term, "", "", "")
 
-" c
-highlight! link cStatement White1
+call s:hi("goBuiltins", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link goConstants Keyword
 
-" haskell
-highlight! link haskellDeclKeyword White1
-highlight! link haskellType Blue2
-highlight! link haskellDecl Magenta1
-highlight! link haskellPreProc Magenta1
-highlight! link haskellWhere White1
-highlight! link haskellOperators Green1
+call s:hi("helpBar", s:nord3_gui, "", s:nord3_term, "", "", "")
+call s:hi("helpHyperTextJump", s:nord8_gui, "", s:nord8_term, "", s:underline, "")
 
-" elixir
-highlight! link elixirModuleDeclaration Magenta1
-highlight! link elixirInclude Magenta1
-highlight! link elixirAlias Green2
-highlight! link elixirVariable Yellow
-highlight! link elixirPseudoVariable Yellow
-highlight! link elixirDefine Magenta1
-highlight! link elixirMacroDeclaration Magenta1
-highlight! link elixirModuleDefine Magenta1
-highlight! link elixirProtocolDefine Magenta1
-highlight! link elixirImplDefine Magenta1
-highlight! link elixirRecordDefine Magenta1
-highlight! link elixirPrivateRecordDefine Magenta1
-highlight! link elixirMacroDefine Magenta1
-highlight! link elixirPrivateMacroDefine Magenta1
-highlight! link elixirDelegateDefine Magenta1
-highlight! link elixirOverridableDefine Magenta1
-highlight! link elixirExceptionDefine Magenta1
-highlight! link elixirCallbackDefine Magenta1
-highlight! link elixirStructDefine Magenta1
+call s:hi("htmlArg", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("htmlLink", s:nord4_gui, "", "", "", "NONE", "NONE")
+hi! link htmlBold Bold
+hi! link htmlEndTag htmlTag
+hi! link htmlItalic Italic
+hi! link htmlH1 markdownH1
+hi! link htmlH2 markdownH1
+hi! link htmlH3 markdownH1
+hi! link htmlH4 markdownH1
+hi! link htmlH5 markdownH1
+hi! link htmlH6 markdownH1
+hi! link htmlSpecialChar SpecialChar
+hi! link htmlTag Keyword
+hi! link htmlTagN htmlTag
 
-" ocaml
-highlight! link ocamlModule Green2
-highlight! link ocamlEqual Green2
-highlight! link ocamlPpxEncl Magenta1
-highlight! link ocamlArrow Green2
-highlight! link ocamlModPath Magenta1
-highlight! link ocamlKeyChar Green2
-highlight! link ocamlFullMod Magenta1
-highlight! link ocamlFuncWith Fg
-highlight! link ocamlWith Green2
-highlight! link ocamlModParam1 Blue1
-highlight! link ocamlModPreRHS Fg
-highlight! link ocamlConstructor Blue1
+call s:hi("javaDocTags", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link javaCommentTitle Comment
+hi! link javaScriptBraces Delimiter
+hi! link javaScriptIdentifier Keyword
+hi! link javaScriptNumber Number
 
-" clojure
-highlight! link clojureDefine Magenta1
-highlight! link clojureQuote Fg
-highlight! link clojureSpecial Magenta1
-highlight! link clojureDispatch Yellow
-highlight! link clojureVariable Blue1
+call s:hi("jsonKeyword", s:nord7_gui, "", s:nord7_term, "", "", "")
 
-" erlang
-highlight! link erlangType Magenta1
-highlight! link erlangLocalFuncCall Green2
-highlight! link erlangLocalFuncRef Yellow
-highlight! link erlangGlobalFuncCall Magenta1
+hi! link lispAtomBarSymbol SpecialChar
+hi! link lispAtomList SpecialChar
+hi! link lispAtomMark Keyword
+hi! link lispBarSymbol SpecialChar
+hi! link lispFunc Function
 
-" lisp
-highlight! link lispDecl White1
-highlight! link lispKey Green2
+hi! link luaFunc Function
 
-" sh
-highlight! link shCommandSub White1
-highlight! link shDerefSimple Green2
-highlight! link shDerefVar Yellow
-highlight! link shQuote Blue1
-highlight! link shFunction White1
+call s:hi("markdownBlockquote", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("markdownCode", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("markdownCodeDelimiter", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("markdownFootnote", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("markdownId", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("markdownIdDeclaration", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("markdownH1", s:nord8_gui, "", s:nord8_term, "", "", "")
+call s:hi("markdownLinkText", s:nord8_gui, "", s:nord8_term, "", "", "")
+call s:hi("markdownUrl", s:nord4_gui, "", "NONE", "", "NONE", "")
+hi! link markdownBold Bold
+hi! link markdownBoldDelimiter Keyword
+hi! link markdownFootnoteDefinition markdownFootnote
+hi! link markdownH2 markdownH1
+hi! link markdownH3 markdownH1
+hi! link markdownH4 markdownH1
+hi! link markdownH5 markdownH1
+hi! link markdownH6 markdownH1
+hi! link markdownIdDelimiter Keyword
+hi! link markdownItalic Italic
+hi! link markdownItalicDelimiter Keyword
+hi! link markdownLinkDelimiter Keyword
+hi! link markdownLinkTextDelimiter Keyword
+hi! link markdownListMarker Keyword
+hi! link markdownRule Keyword
+hi! link markdownHeadingDelimiter Keyword
 
-" zsh
-highlight! link zshOptStart Magenta1
-highlight! link zshOption Green2
-highlight! link zshSubst Yellow
-highlight! link zshFunction Magenta1
-highlight! link zshDeref Green2
-highlight! link zshTypes Magenta1
+call s:hi("perlPackageDecl", s:nord7_gui, "", s:nord7_term, "", "", "")
 
-" vim
-highlight! link vimFunction Green2
-highlight! link vimLet White1
-highlight! link vimMap Green2
-highlight! link vimMapMod Yellow
-highlight! link vimMapLhs Blue1
-highlight! link vimMapRhs Blue1
-highlight! link vimNotation Magenta1
-highlight! link vimAugroupKey White1
-highlight! link vimAutoCmd Green2
+call s:hi("phpClasses", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("phpDocTags", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link phpDocCustomTags phpDocTags
+hi! link phpMemberSelector Keyword
 
-" json
-highlight! link jsonKeyword Green2
+call s:hi("podCmdText", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("podVerbatimLine", s:nord4_gui, "", "NONE", "", "", "")
+hi! link podFormat Keyword
 
-" yaml
-highlight! link yamlKey Green2
+hi! link pythonBuiltin Type
+hi! link pythonEscape SpecialChar
 
-" toml
-highlight! link tomlKey Green2
+call s:hi("rubyConstant", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("rubySymbol", s:nord6_gui, "", s:nord6_term, "", s:bold, "")
+hi! link rubyAttribute Identifier
+hi! link rubyBlockParameterList Operator
+hi! link rubyInterpolationDelimiter Keyword
+hi! link rubyKeywordAsMethod Function
+hi! link rubyLocalVariableOrMethod Function
+hi! link rubyPseudoVariable Keyword
+hi! link rubyRegexp SpecialChar
 
-" diff
-highlight! link diffAdded Blue1
-highlight! link diffRemoved Red
-highlight! link diffChanged Yellow
-highlight! link diffOldFile Green2
-highlight! link diffNewFile Purple
-highlight! link diffFile Blue1
-highlight! link diffLine Grey
-highlight! link diffIndexLine Green1
+call s:hi("rustAttribute", s:nord10_gui, "", s:nord10_term, "", "", "")
+call s:hi("rustEnum", s:nord7_gui, "", s:nord7_term, "", s:bold, "")
+call s:hi("rustMacro", s:nord8_gui, "", s:nord8_term, "", s:bold, "")
+call s:hi("rustModPath", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("rustPanic", s:nord9_gui, "", s:nord9_term, "", s:bold, "")
+call s:hi("rustTrait", s:nord7_gui, "", s:nord7_term, "", s:italic, "")
+hi! link rustCommentLineDoc Comment
+hi! link rustDerive rustAttribute
+hi! link rustEnumVariant rustEnum
+hi! link rustEscape SpecialChar
+hi! link rustQuestionMark Keyword
 
-" help
-call s:highlight('helpURL', s:palette.green2, s:palette.none, 'underline')
-call s:highlight('helpNote', s:palette.white2, s:palette.none, 'bold')
-highlight! link helpHyperTextEntry Green2
-highlight! link helpHyperTextJump Red
-highlight! link helpSectionDelim Grey
-highlight! link helpExample Blue1
-highlight! link helpCommand Purple
-highlight! link helpHeadline Purple
-highlight! link helpHeader Green2
+call s:hi("sassClass", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("sassId", s:nord7_gui, "", s:nord7_term, "", s:underline, "")
+hi! link sassAmpersand Keyword
+hi! link sassClassChar Delimiter
+hi! link sassControl Keyword
+hi! link sassControlLine Keyword
+hi! link sassExtend Keyword
+hi! link sassFor Keyword
+hi! link sassFunctionDecl Keyword
+hi! link sassFunctionName Function
+hi! link sassidChar sassId
+hi! link sassInclude SpecialChar
+hi! link sassMixinName Function
+hi! link sassMixing SpecialChar
+hi! link sassReturn Keyword
+
+hi! link shCmdParenRegion Delimiter
+hi! link shCmdSubRegion Delimiter
+hi! link shDerefSimple Identifier
+hi! link shDerefVar Identifier
+
+hi! link sqlKeyword Keyword
+hi! link sqlSpecial Keyword
+
+call s:hi("vimAugroup", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("vimMapRhs", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("vimNotation", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link vimFunc Function
+hi! link vimFunction Function
+hi! link vimUserFunc Function
+
+call s:hi("xmlAttrib", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("xmlCdataStart", s:nord_comment, "", s:nord3_term, "", s:bold, "")
+call s:hi("xmlNamespace", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link xmlAttribPunct Delimiter
+hi! link xmlCdata Comment
+hi! link xmlCdataCdata xmlCdataStart
+hi! link xmlCdataEnd xmlCdataStart
+hi! link xmlEndTag xmlTagName
+hi! link xmlProcessingDelim Keyword
+hi! link xmlTagName Keyword
+
+call s:hi("yamlBlockMappingKey", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link yamlBool Keyword
+hi! link yamlDocumentStart Keyword
+
+
+" Neovim LSP
+" > neovim/nvim-lspconfig
+call s:hi("LspCodeLens", s:nord_comment, "", s:nord3_term, "", "", "")
+if has("nvim-0.5")
+  call s:hi("LspDiagnosticsDefaultWarning", s:nord13_gui, "", s:nord13_term, "", "", "")
+  call s:hi("LspDiagnosticsDefaultError" , s:nord11_gui, "", s:nord11_term, "", "", "")
+  call s:hi("LspDiagnosticsDefaultInformation" , s:nord8_gui, "", s:nord8_term, "", "", "")
+  call s:hi("LspDiagnosticsDefaultHint" , s:nord10_gui, "", s:nord10_term, "", "", "")
+  call s:hi("LspDiagnosticsUnderlineWarning" , s:nord13_gui, "", s:nord13_term, "", "undercurl", "")
+  call s:hi("LspDiagnosticsUnderlineError" , s:nord11_gui, "", s:nord11_term, "", "undercurl", "")
+  call s:hi("LspDiagnosticsUnderlineInformation" , s:nord8_gui, "", s:nord8_term, "", "undercurl", "")
+  call s:hi("LspDiagnosticsUnderlineHint" , s:nord10_gui, "", s:nord10_term, "", "undercurl", "")
+endif
 
 " GitGutter
-call s:highlight('GitGutterAdd', s:palette.green1, s:palette.black1)
-call s:highlight('GitGutterChange', s:palette.yellow2, s:palette.black1)
-call s:highlight('GitGutterDelete', s:palette.red2, s:palette.black1)
-call s:highlight('GitGutterChangeDelete', s:palette.white1, s:palette.black1)
+" > airblade/vim-gitgutter
+call s:hi("GitGutterAdd", s:nord14_gui, "", s:nord14_term, "", "", "")
+call s:hi("GitGutterChange", s:nord13_gui, "", s:nord13_term, "", "", "")
+call s:hi("GitGutterChangeDelete", s:nord11_gui, "", s:nord11_term, "", "", "")
+call s:hi("GitGutterDelete", s:nord11_gui, "", s:nord11_term, "", "", "")
 
-if exists("g:transparent_bg") && g:transparent_bg==1
-  hi! Normal        ctermbg=NONE guibg=NONE
-  hi! LineNr        ctermbg=NONE guibg=NONE
-  hi! VertSplit     ctermbg=NONE guibg=NONE
-  hi! EndOfBuffer   ctermbg=NONE guibg=NONE
-  hi! NonText       ctermbg=NONE guibg=NONE
-  hi! SignColumn    ctermbg=NONE guibg=NONE
-  hi! CursorLine    ctermbg=NONE guibg=NONE
-  hi! CursorLineNr  ctermbg=NONE guibg=NONE
+" NERDTree
+" > scrooloose/nerdtree
+call s:hi("NERDTreeExecFile", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link NERDTreeDirSlash Keyword
+hi! link NERDTreeHelp Comment
+
+" vim-indent-guides
+" > nathanaelkane/vim-indent-guides
+call s:hi("IndentGuidesEven", "", s:nord1_gui, "", s:nord1_term, "", "")
+call s:hi("IndentGuidesOdd", "", s:nord2_gui, "", s:nord3_term, "", "")
+
+" Haskell
+" > neovimhaskell/haskell-vim
+call s:hi("haskellPreProc", s:nord10_gui, "", s:nord10_term, "", "", "")
+call s:hi("haskellType", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link haskellPragma haskellPreProc
+
+" JavaScript
+" > pangloss/vim-javascript
+call s:hi("jsGlobalNodeObjects", s:nord8_gui, "", s:nord8_term, "", s:italic, "")
+hi! link jsBrackets Delimiter
+hi! link jsFuncCall Function
+hi! link jsFuncParens Delimiter
+hi! link jsThis Keyword
+hi! link jsNoise Delimiter
+hi! link jsPrototype Keyword
+hi! link jsRegexpString SpecialChar
+
+" Pandoc
+" > vim-pandoc/vim-pandoc-syntax
+call s:hi("pandocDefinitionBlockTerm", s:nord7_gui, "", s:nord7_term, "", s:italic, "")
+call s:hi("pandocTableDelims", s:nord3_gui, "", s:nord3_term, "", "", "")
+hi! link pandocAtxHeader markdownH1
+hi! link pandocBlockQuote markdownBlockquote
+hi! link pandocCiteAnchor Operator
+hi! link pandocCiteKey pandocReferenceLabel
+hi! link pandocDefinitionBlockMark Operator
+hi! link pandocEmphasis markdownItalic
+hi! link pandocFootnoteID pandocReferenceLabel
+hi! link pandocFootnoteIDHead markdownLinkDelimiter
+hi! link pandocFootnoteIDTail pandocFootnoteIDHead
+hi! link pandocGridTableDelims pandocTableDelims
+hi! link pandocGridTableHeader pandocTableDelims
+hi! link pandocOperator Operator
+hi! link pandocPipeTableDelims pandocTableDelims
+hi! link pandocReferenceDefinition pandocReferenceLabel
+hi! link pandocReferenceLabel markdownLinkText
+hi! link pandocReferenceURL markdownUrl
+hi! link pandocSimpleTableHeader pandocAtxHeader
+hi! link pandocStrong markdownBold
+hi! link pandocTableHeaderWord pandocAtxHeader
+hi! link pandocUListItemBullet Operator
+
+" tree-sitter
+" > nvim-treesitter/nvim-treesitter
+if has("nvim")
+  hi! link TSAnnotation Annotation
+  hi! link TSConstBuiltin Constant
+  hi! link TSConstructor Function
+  hi! link TSEmphasis Italic
+  hi! link TSFuncBuiltin Function
+  hi! link TSFuncMacro Function
+  hi! link TSStringRegex SpecialChar
+  hi! link TSStrong Bold
+  hi! link TSStructure Structure
+  hi! link TSTagDelimiter TSTag
+  hi! link TSUnderline Underline
+  hi! link TSVariable Variable
+  hi! link TSVariableBuiltin Keyword
 endif
+
+" TypeScript
+" > HerringtonDarkholme/yats.vim
+call s:hi("typescriptBOMWindowMethod", s:nord8_gui, "", s:nord8_term, "", s:italic, "")
+call s:hi("typescriptClassName", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("typescriptDecorator", s:nord12_gui, "", s:nord12_term, "", "", "")
+call s:hi("typescriptInterfaceName", s:nord7_gui, "", s:nord7_term, "", s:bold, "")
+call s:hi("typescriptRegexpString", s:nord13_gui, "", s:nord13_term, "", "", "")
+" TypeScript JSX
+ call s:hi("tsxAttrib", s:nord7_gui, "", s:nord7_term, "", "", "")
+hi! link typescriptOperator Operator
+hi! link typescriptBinaryOp Operator
+hi! link typescriptAssign Operator
+hi! link typescriptMember Identifier
+hi! link typescriptDOMStorageMethod Identifier
+hi! link typescriptArrowFuncArg Identifier
+hi! link typescriptGlobal typescriptClassName
+hi! link typescriptBOMWindowProp Function
+hi! link typescriptArrowFuncDef Function
+hi! link typescriptAliasDeclaration Function
+hi! link typescriptPredefinedType Type
+hi! link typescriptTypeReference typescriptClassName
+hi! link typescriptTypeAnnotation Structure
+hi! link typescriptDocNamedParamType SpecialComment
+hi! link typescriptDocNotation Keyword
+hi! link typescriptDocTags Keyword
+hi! link typescriptImport Keyword
+hi! link typescriptExport Keyword
+hi! link typescriptTry Keyword
+hi! link typescriptVariable Keyword
+hi! link typescriptBraces Normal
+hi! link typescriptObjectLabel Normal
+hi! link typescriptCall Normal
+hi! link typescriptClassHeritage typescriptClassName
+hi! link typescriptFuncTypeArrow Structure
+hi! link typescriptMemberOptionality Structure
+hi! link typescriptNodeGlobal typescriptGlobal
+hi! link typescriptTypeBrackets Structure
+hi! link tsxEqual Operator
+hi! link tsxIntrinsicTagName htmlTag
+hi! link tsxTagName tsxIntrinsicTagName
+
+" Markdown
+" > plasticboy/vim-markdown
+call s:hi("mkdCode", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("mkdFootnote", s:nord8_gui, "", s:nord8_term, "", "", "")
+call s:hi("mkdRule", s:nord10_gui, "", s:nord10_term, "", "", "")
+call s:hi("mkdLineBreak", s:nord9_gui, "", s:nord9_term, "", "", "")
+hi! link mkdBold Bold
+hi! link mkdItalic Italic
+hi! link mkdString Keyword
+hi! link mkdCodeStart mkdCode
+hi! link mkdCodeEnd mkdCode
+hi! link mkdBlockquote Comment
+hi! link mkdListItem Keyword
+hi! link mkdListItemLine Normal
+hi! link mkdFootnotes mkdFootnote
+hi! link mkdLink markdownLinkText
+hi! link mkdURL markdownUrl
+hi! link mkdInlineURL mkdURL
+hi! link mkdID Identifier
+hi! link mkdLinkDef mkdLink
+hi! link mkdLinkDefTarget mkdURL
+hi! link mkdLinkTitle mkdInlineURL
+hi! link mkdDelimiter Keyword
+
+" PHP
+" > StanAngeloff/php.vim
+call s:hi("phpClass", s:nord7_gui, "", s:nord7_term, "", "", "")
+call s:hi("phpClassImplements", s:nord7_gui, "", s:nord7_term, "", s:bold, "")
+hi! link phpClassExtends phpClass
+hi! link phpFunction Function
+hi! link phpMethod Function
+hi! link phpUseClass phpClass
+
+" YAML
+" > stephpy/vim-yaml
+call s:hi("yamlKey", s:nord7_gui, "", s:nord7_term, "", "", "")
