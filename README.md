@@ -4,16 +4,16 @@ This is a very opinionated color scheme designed to the get the feeling of being
 *(This is built on top of the vim port of the [Nord Theme](https://www.nordtheme.com/ports/vim))*
 
 #### C
-<img src="screenshots/c_on_the_grid.png" width="500" />
+<img src="https://raw.githubusercontent.com/lycuid/assets/master/cluless.vim/c_on_the_grid.png" width="500" />
 
 #### Golang
-<img src="screenshots/go_on_the_grid.png" width="500" />
+<img src="https://raw.githubusercontent.com/lycuid/assets/master/cluless.vim/go_on_the_grid.png" width="500" />
 
 #### Rust
-<img src="screenshots/rust_on_the_grid.png" width="500" />
+<img src="https://raw.githubusercontent.com/lycuid/assets/master/cluless.vim/rust_on_the_grid.png" width="500" />
 
 #### Python
-<img src="screenshots/python_on_the_grid.png" width="500" />
+<img src="https://raw.githubusercontent.com/lycuid/assets/master/cluless.vim/python_on_the_grid.png" width="500" />
 
 #### Haskell
-<img src="screenshots/haskell_on_the_grid.png" width="500" />
+<img src="https://raw.githubusercontent.com/lycuid/assets/master/cluless.vim/haskell_on_the_grid.png" width="500" />
