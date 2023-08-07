@@ -1,6 +1,6 @@
 " This colorscheme was built on top of the Nord Theme.
 
-let g:colors_name = 'grid'
+let g:colors_name = "cluless.vim"
 
 hi clear
 if exists("syntax_on")
@@ -103,11 +103,11 @@ call s:hi("healthWarning", s:grid13_gui, s:grid1_gui, s:grid13_term, s:grid1_ter
 call s:hi("TermCursorNC", "", s:grid1_gui, "", s:grid1_term, "", "")
 hi! link VisualNOS Visual
 
-if has('terminal')
+if has("terminal")
   let g:terminal_ansi_colors = [s:grid1_gui, s:grid11_gui, s:grid14_gui, s:grid13_gui, s:grid9_gui, s:grid15_gui, s:grid8_gui, s:grid5_gui, s:grid3_gui, s:grid11_gui, s:grid14_gui, s:grid13_gui, s:grid9_gui, s:grid15_gui, s:grid7_gui, s:grid6_gui]
 endif
 
-if has('nvim')
+if has("nvim")
   let g:terminal_color_0 = s:grid1_gui
   let g:terminal_color_1 = s:grid11_gui
   let g:terminal_color_2 = s:grid14_gui
