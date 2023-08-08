@@ -96,7 +96,7 @@ call s:hi("SpellBad", s:grid11_gui, s:grid0_gui, s:grid11_term, "NONE", "undercu
 call s:hi("SpellCap", s:grid13_gui, s:grid0_gui, s:grid13_term, "NONE", "undercurl", s:grid13_gui)
 call s:hi("SpellLocal", s:grid5_gui, s:grid0_gui, s:grid5_term, "NONE", "undercurl", s:grid5_gui)
 call s:hi("SpellRare", s:grid6_gui, s:grid0_gui, s:grid6_term, "NONE", "undercurl", s:grid6_gui)
-call s:hi("Visual", "", s:grid1_gui, "", s:grid1_term, s:bold, "")
+call s:hi("Visual", s:grid6_gui, s:grid10_gui, s:grid6_term, s:grid10_term, s:bold, "")
 call s:hi("healthError", s:grid11_gui, s:grid1_gui, s:grid11_term, s:grid1_term, "", "")
 call s:hi("healthSuccess", s:grid14_gui, s:grid1_gui, s:grid14_term, s:grid1_term, "", "")
 call s:hi("healthWarning", s:grid13_gui, s:grid1_gui, s:grid13_term, s:grid1_term, "", "")
