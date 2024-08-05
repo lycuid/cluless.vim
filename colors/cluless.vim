@@ -1,6 +1,6 @@
 " This colorscheme was built on top of the Nord Theme.
 
-let g:colors_name = "cluless.vim"
+let g:colors_name = "cluless"
 
 hi clear
 if exists("syntax_on")
@@ -9,44 +9,44 @@ endif
 
 set background=dark
 
-let s:grid0_gui     = "#090909"
-let s:grid1_gui     = "#191919"
-let s:grid2_gui     = "#434C5E"
-let s:grid3_gui     = "#4C566A"
-let s:grid_comment  = "#616E88"
-let s:grid4_gui     = "#D8DEE9"
-let s:grid5_gui     = "#E5E9F0"
-let s:grid6_gui     = "#ECEFF4"
-let s:grid7_gui     = "#8FBCBB"
-let s:grid8_gui     = "#88C0D0"
-let s:grid9_gui     = "#81A1C1"
-let s:grid10_gui    = "#5E81AC"
-let s:grid11_gui    = "#BF616A"
-let s:grid12_gui    = "#D08770"
-let s:grid13_gui    = "#EBCB8B"
-let s:grid14_gui    = "#A3BE8C"
-let s:grid15_gui    = "#B48EAD"
+let s:cluless0_gui    = "#090909"
+let s:cluless1_gui    = "#191919"
+let s:cluless2_gui    = "#434C5E"
+let s:cluless3_gui    = "#4C566A"
+let s:cluless_comment = "#616E88"
+let s:cluless4_gui    = "#D8DEE9"
+let s:cluless5_gui    = "#E5E9F0"
+let s:cluless6_gui    = "#ECEFF4"
+let s:cluless7_gui    = "#8FBCBB"
+let s:cluless8_gui    = "#88C0D0"
+let s:cluless9_gui    = "#81A1C1"
+let s:cluless10_gui   = "#5E81AC"
+let s:cluless11_gui   = "#BF616A"
+let s:cluless12_gui   = "#D08770"
+let s:cluless13_gui   = "#EBCB8B"
+let s:cluless14_gui   = "#A3BE8C"
+let s:cluless15_gui   = "#B48EAD"
 
-let s:grid1_term = "0"
-let s:grid3_term = "8"
-let s:grid5_term = "7"
-let s:grid6_term = "15"
-let s:grid7_term = "14"
-let s:grid8_term = "6"
-let s:grid9_term = "4"
-let s:grid10_term = "12"
-let s:grid11_term = "1"
-let s:grid12_term = "11"
-let s:grid13_term = "3"
-let s:grid14_term = "2"
-let s:grid15_term = "5"
+let s:cluless1_term   = "0"
+let s:cluless3_term   = "8"
+let s:cluless5_term   = "7"
+let s:cluless6_term   = "15"
+let s:cluless7_term   = "14"
+let s:cluless8_term   = "6"
+let s:cluless9_term   = "4"
+let s:cluless10_term  = "12"
+let s:cluless11_term  = "1"
+let s:cluless12_term  = "11"
+let s:cluless13_term  = "3"
+let s:cluless14_term  = "2"
+let s:cluless15_term  = "5"
 
 let s:bold = "bold,"
-if !exists("g:grid_italic")
+if !exists("g:cluless_italic")
   if has("gui_running") || $TERM_ITALICS == "true"
-    let g:grid_italic = 1
+    let g:cluless_italic = 1
   else
-    let g:grid_italic = 0
+    let g:cluless_italic = 0
   endif
 endif
 
@@ -78,115 +78,115 @@ call s:hi("Bold", "", "", "", "", s:bold, "")
 call s:hi("Italic", "", "", "", "", s:italic, "")
 call s:hi("Underline", "", "", "", "", s:underline, "")
 
-call s:hi("ColorColumn", "", s:grid1_gui, "NONE", s:grid1_term, "", "")
-call s:hi("Cursor", s:grid0_gui, s:grid4_gui, "", "NONE", "", "")
-call s:hi("CursorLine", "", s:grid1_gui, "NONE", s:grid1_term, "NONE", "")
-call s:hi("Error", s:grid4_gui, s:grid11_gui, "", s:grid11_term, "", "")
-call s:hi("iCursor", s:grid0_gui, s:grid4_gui, "", "NONE", "", "")
-call s:hi("LineNr", s:grid3_gui, "NONE", s:grid3_term, "NONE", "", "")
-call s:hi("MatchParen", s:grid8_gui, s:grid3_gui, s:grid8_term, s:grid3_term, "", "")
-call s:hi("NonText", s:grid2_gui, "", s:grid3_term, "", "", "")
-call s:hi("Normal", s:grid4_gui, s:grid0_gui, "NONE", "NONE", "", "")
-call s:hi("Pmenu", s:grid4_gui, s:grid2_gui, "NONE", s:grid1_term, "NONE", "")
-call s:hi("PmenuSbar", s:grid4_gui, s:grid2_gui, "NONE", s:grid1_term, "", "")
-call s:hi("PmenuSel", s:grid8_gui, s:grid3_gui, s:grid8_term, s:grid3_term, "", "")
-call s:hi("PmenuThumb", s:grid8_gui, s:grid3_gui, "NONE", s:grid3_term, "", "")
-call s:hi("SpecialKey", s:grid3_gui, "", s:grid3_term, "", "", "")
-call s:hi("SpellBad", s:grid11_gui, s:grid0_gui, s:grid11_term, "NONE", "undercurl", s:grid11_gui)
-call s:hi("SpellCap", s:grid13_gui, s:grid0_gui, s:grid13_term, "NONE", "undercurl", s:grid13_gui)
-call s:hi("SpellLocal", s:grid5_gui, s:grid0_gui, s:grid5_term, "NONE", "undercurl", s:grid5_gui)
-call s:hi("SpellRare", s:grid6_gui, s:grid0_gui, s:grid6_term, "NONE", "undercurl", s:grid6_gui)
-call s:hi("Visual", s:grid6_gui, s:grid10_gui, s:grid6_term, s:grid10_term, s:bold, "")
-call s:hi("healthError", s:grid11_gui, s:grid1_gui, s:grid11_term, s:grid1_term, "", "")
-call s:hi("healthSuccess", s:grid14_gui, s:grid1_gui, s:grid14_term, s:grid1_term, "", "")
-call s:hi("healthWarning", s:grid13_gui, s:grid1_gui, s:grid13_term, s:grid1_term, "", "")
-call s:hi("TermCursorNC", "", s:grid1_gui, "", s:grid1_term, "", "")
+call s:hi("ColorColumn", "", s:cluless1_gui, "NONE", s:cluless1_term, "", "")
+call s:hi("Cursor", s:cluless0_gui, s:cluless4_gui, "", "NONE", "", "")
+call s:hi("CursorLine", "", s:cluless1_gui, "NONE", s:cluless1_term, "NONE", "")
+call s:hi("Error", s:cluless4_gui, s:cluless11_gui, "", s:cluless11_term, "", "")
+call s:hi("iCursor", s:cluless0_gui, s:cluless4_gui, "", "NONE", "", "")
+call s:hi("LineNr", s:cluless3_gui, "NONE", s:cluless3_term, "NONE", "", "")
+call s:hi("MatchParen", s:cluless8_gui, s:cluless3_gui, s:cluless8_term, s:cluless3_term, "", "")
+call s:hi("NonText", s:cluless2_gui, "", s:cluless3_term, "", "", "")
+call s:hi("Normal", s:cluless4_gui, s:cluless0_gui, "NONE", "NONE", "", "")
+call s:hi("Pmenu", s:cluless4_gui, s:cluless2_gui, "NONE", s:cluless1_term, "NONE", "")
+call s:hi("PmenuSbar", s:cluless4_gui, s:cluless2_gui, "NONE", s:cluless1_term, "", "")
+call s:hi("PmenuSel", s:cluless8_gui, s:cluless3_gui, s:cluless8_term, s:cluless3_term, "", "")
+call s:hi("PmenuThumb", s:cluless8_gui, s:cluless3_gui, "NONE", s:cluless3_term, "", "")
+call s:hi("SpecialKey", s:cluless3_gui, "", s:cluless3_term, "", "", "")
+call s:hi("SpellBad", s:cluless11_gui, s:cluless0_gui, s:cluless11_term, "NONE", "undercurl", s:cluless11_gui)
+call s:hi("SpellCap", s:cluless13_gui, s:cluless0_gui, s:cluless13_term, "NONE", "undercurl", s:cluless13_gui)
+call s:hi("SpellLocal", s:cluless5_gui, s:cluless0_gui, s:cluless5_term, "NONE", "undercurl", s:cluless5_gui)
+call s:hi("SpellRare", s:cluless6_gui, s:cluless0_gui, s:cluless6_term, "NONE", "undercurl", s:cluless6_gui)
+call s:hi("Visual", "", s:cluless1_gui, "", s:cluless1_term, s:bold, "")
+call s:hi("healthError", s:cluless11_gui, s:cluless1_gui, s:cluless11_term, s:cluless1_term, "", "")
+call s:hi("healthSuccess", s:cluless14_gui, s:cluless1_gui, s:cluless14_term, s:cluless1_term, "", "")
+call s:hi("healthWarning", s:cluless13_gui, s:cluless1_gui, s:cluless13_term, s:cluless1_term, "", "")
+call s:hi("TermCursorNC", "", s:cluless1_gui, "", s:cluless1_term, "", "")
 hi! link VisualNOS Visual
 
-if has("terminal")
-  let g:terminal_ansi_colors = [s:grid1_gui, s:grid11_gui, s:grid14_gui, s:grid13_gui, s:grid9_gui, s:grid15_gui, s:grid8_gui, s:grid5_gui, s:grid3_gui, s:grid11_gui, s:grid14_gui, s:grid13_gui, s:grid9_gui, s:grid15_gui, s:grid7_gui, s:grid6_gui]
+if has('terminal')
+  let g:terminal_ansi_colors = [s:cluless1_gui, s:cluless11_gui, s:cluless14_gui, s:cluless13_gui, s:cluless9_gui, s:cluless15_gui, s:cluless8_gui, s:cluless5_gui, s:cluless3_gui, s:cluless11_gui, s:cluless14_gui, s:cluless13_gui, s:cluless9_gui, s:cluless15_gui, s:cluless7_gui, s:cluless6_gui]
 endif
 
-if has("nvim")
-  let g:terminal_color_0 = s:grid1_gui
-  let g:terminal_color_1 = s:grid11_gui
-  let g:terminal_color_2 = s:grid14_gui
-  let g:terminal_color_3 = s:grid13_gui
-  let g:terminal_color_4 = s:grid9_gui
-  let g:terminal_color_5 = s:grid15_gui
-  let g:terminal_color_6 = s:grid8_gui
-  let g:terminal_color_7 = s:grid5_gui
-  let g:terminal_color_8 = s:grid3_gui
-  let g:terminal_color_9 = s:grid11_gui
-  let g:terminal_color_10 = s:grid14_gui
-  let g:terminal_color_11 = s:grid13_gui
-  let g:terminal_color_12 = s:grid9_gui
-  let g:terminal_color_13 = s:grid15_gui
-  let g:terminal_color_14 = s:grid7_gui
-  let g:terminal_color_15 = s:grid6_gui
+if has('nvim')
+  let g:terminal_color_0 = s:cluless1_gui
+  let g:terminal_color_1 = s:cluless11_gui
+  let g:terminal_color_2 = s:cluless14_gui
+  let g:terminal_color_3 = s:cluless13_gui
+  let g:terminal_color_4 = s:cluless9_gui
+  let g:terminal_color_5 = s:cluless15_gui
+  let g:terminal_color_6 = s:cluless8_gui
+  let g:terminal_color_7 = s:cluless5_gui
+  let g:terminal_color_8 = s:cluless3_gui
+  let g:terminal_color_9 = s:cluless11_gui
+  let g:terminal_color_10 = s:cluless14_gui
+  let g:terminal_color_11 = s:cluless13_gui
+  let g:terminal_color_12 = s:cluless9_gui
+  let g:terminal_color_13 = s:cluless15_gui
+  let g:terminal_color_14 = s:cluless7_gui
+  let g:terminal_color_15 = s:cluless6_gui
 endif
 
-call s:hi("DiagnosticWarn", s:grid13_gui, "", s:grid13_term, "", "", "")
-call s:hi("DiagnosticError" , s:grid11_gui, "", s:grid11_term, "", "", "")
-call s:hi("DiagnosticInfo" , s:grid8_gui, "", s:grid8_term, "", "", "")
-call s:hi("DiagnosticHint" , s:grid10_gui, "", s:grid10_term, "", "", "")
-call s:hi("DiagnosticUnderlineWarn" , s:grid13_gui, "", s:grid13_term, "", "undercurl", "")
-call s:hi("DiagnosticUnderlineError" , s:grid11_gui, "", s:grid11_term, "", "undercurl", "")
-call s:hi("DiagnosticUnderlineInfo" , s:grid8_gui, "", s:grid8_term, "", "undercurl", "")
-call s:hi("DiagnosticUnderlineHint" , s:grid10_gui, "", s:grid10_term, "", "undercurl", "")
-call s:hi("LspReferenceText", "", s:grid3_gui, "", s:grid3_term, "", "")
-call s:hi("LspReferenceRead", "", s:grid3_gui, "", s:grid3_term, "", "")
-call s:hi("LspReferenceWrite", "", s:grid3_gui, "", s:grid3_term, "", "")
-call s:hi("LspSignatureActiveParameter", s:grid8_gui, "", s:grid8_term, "", s:underline, "")
-call s:hi("CursorColumn", "", s:grid1_gui, "NONE", s:grid1_term, "", "")
-call s:hi("CursorLineNr", s:grid4_gui, s:grid1_gui, "NONE", s:grid1_term, "NONE", "")
-call s:hi("Folded", s:grid3_gui, s:grid1_gui, s:grid3_term, s:grid1_term, s:bold, "")
-call s:hi("FoldColumn", s:grid3_gui, s:grid0_gui, s:grid3_term, "NONE", "", "")
-call s:hi("SignColumn", s:grid1_gui, s:grid0_gui, s:grid1_term, "NONE", "", "")
-call s:hi("Directory", s:grid8_gui, "", s:grid8_term, "NONE", "", "")
-call s:hi("EndOfBuffer", s:grid1_gui, "", s:grid1_term, "NONE", "", "")
-call s:hi("ErrorMsg", s:grid4_gui, s:grid11_gui, "NONE", s:grid11_term, "", "")
-call s:hi("ModeMsg", s:grid4_gui, "", "", "", "", "")
-call s:hi("MoreMsg", s:grid8_gui, "", s:grid8_term, "", "", "")
-call s:hi("Question", s:grid4_gui, "", "NONE", "", "", "")
-call s:hi("WarningMsg", s:grid0_gui, s:grid13_gui, s:grid1_term, s:grid13_term, "", "")
-call s:hi("WildMenu", s:grid8_gui, s:grid1_gui, s:grid8_term, s:grid1_term, "", "")
-call s:hi("Search", s:grid11_gui, s:grid1_gui, s:grid1_term, s:grid11_term, s:bold, "")
-call s:hi("TabLine", s:grid4_gui, s:grid1_gui, "NONE", s:grid1_term, "NONE", "")
-call s:hi("TabLineFill", s:grid4_gui, s:grid1_gui, "NONE", s:grid1_term, "NONE", "")
-call s:hi("TabLineSel", s:grid8_gui, s:grid3_gui, s:grid8_term, s:grid3_term, "NONE", "")
-call s:hi("Title", s:grid4_gui, "", "NONE", "", "NONE", "")
-call s:hi("VertSplit", s:grid2_gui, s:grid0_gui, s:grid3_term, "NONE", "NONE", "")
+call s:hi("DiagnosticWarn", s:cluless13_gui, "", s:cluless13_term, "", "", "")
+call s:hi("DiagnosticError" , s:cluless11_gui, "", s:cluless11_term, "", "", "")
+call s:hi("DiagnosticInfo" , s:cluless8_gui, "", s:cluless8_term, "", "", "")
+call s:hi("DiagnosticHint" , s:cluless10_gui, "", s:cluless10_term, "", "", "")
+call s:hi("DiagnosticUnderlineWarn" , s:cluless13_gui, "", s:cluless13_term, "", "undercurl", "")
+call s:hi("DiagnosticUnderlineError" , s:cluless11_gui, "", s:cluless11_term, "", "undercurl", "")
+call s:hi("DiagnosticUnderlineInfo" , s:cluless8_gui, "", s:cluless8_term, "", "undercurl", "")
+call s:hi("DiagnosticUnderlineHint" , s:cluless10_gui, "", s:cluless10_term, "", "undercurl", "")
+call s:hi("LspReferenceText", "", s:cluless3_gui, "", s:cluless3_term, "", "")
+call s:hi("LspReferenceRead", "", s:cluless3_gui, "", s:cluless3_term, "", "")
+call s:hi("LspReferenceWrite", "", s:cluless3_gui, "", s:cluless3_term, "", "")
+call s:hi("LspSignatureActiveParameter", s:cluless8_gui, "", s:cluless8_term, "", s:underline, "")
+call s:hi("CursorColumn", "", s:cluless1_gui, "NONE", s:cluless1_term, "", "")
+call s:hi("CursorLineNr", s:cluless4_gui, s:cluless1_gui, "NONE", s:cluless1_term, "NONE", "")
+call s:hi("Folded", s:cluless3_gui, s:cluless1_gui, s:cluless3_term, s:cluless1_term, s:bold, "")
+call s:hi("FoldColumn", s:cluless3_gui, s:cluless0_gui, s:cluless3_term, "NONE", "", "")
+call s:hi("SignColumn", s:cluless1_gui, s:cluless0_gui, s:cluless1_term, "NONE", "", "")
+call s:hi("Directory", s:cluless8_gui, "", s:cluless8_term, "NONE", "", "")
+call s:hi("EndOfBuffer", s:cluless1_gui, "", s:cluless1_term, "NONE", "", "")
+call s:hi("ErrorMsg", s:cluless4_gui, s:cluless11_gui, "NONE", s:cluless11_term, "", "")
+call s:hi("ModeMsg", s:cluless4_gui, "", "", "", "", "")
+call s:hi("MoreMsg", s:cluless8_gui, "", s:cluless8_term, "", "", "")
+call s:hi("Question", s:cluless4_gui, "", "NONE", "", "", "")
+call s:hi("WarningMsg", s:cluless0_gui, s:cluless13_gui, s:cluless1_term, s:cluless13_term, "", "")
+call s:hi("WildMenu", s:cluless8_gui, s:cluless1_gui, s:cluless8_term, s:cluless1_term, "", "")
+call s:hi("Search", s:cluless11_gui, s:cluless1_gui, s:cluless1_term, s:cluless11_term, s:bold, "")
+call s:hi("TabLine", s:cluless4_gui, s:cluless1_gui, "NONE", s:cluless1_term, "NONE", "")
+call s:hi("TabLineFill", s:cluless4_gui, s:cluless1_gui, "NONE", s:cluless1_term, "NONE", "")
+call s:hi("TabLineSel", s:cluless8_gui, s:cluless3_gui, s:cluless8_term, s:cluless3_term, "NONE", "")
+call s:hi("Title", s:cluless4_gui, "", "NONE", "", "NONE", "")
+call s:hi("VertSplit", s:cluless2_gui, s:cluless0_gui, s:cluless3_term, "NONE", "NONE", "")
 
-call s:hi("Boolean", s:grid9_gui, "", s:grid9_term, "", "", "")
-call s:hi("Character", s:grid14_gui, "", s:grid14_term, "", "", "")
-call s:hi("Comment", s:grid_comment, "", s:grid3_term, "", s:italic, "")
+call s:hi("Boolean", s:cluless9_gui, "", s:cluless9_term, "", "", "")
+call s:hi("Character", s:cluless14_gui, "", s:cluless14_term, "", "", "")
+call s:hi("Comment", s:cluless_comment, "", s:cluless3_term, "", s:italic, "")
 call s:hi("Conceal", "", "NONE", "", "NONE", "", "")
-call s:hi("Conditional", s:grid9_gui, "", s:grid9_term, "", "", "")
-call s:hi("Constant", s:grid4_gui, "", "NONE", "", "", "")
-call s:hi("Decorator", s:grid12_gui, "", s:grid12_term, "", "", "")
-call s:hi("Define", s:grid9_gui, "", s:grid9_term, "", s:bold, "")
-call s:hi("Delimiter", s:grid6_gui, "", s:grid6_term, "", "", "")
-call s:hi("Exception", s:grid9_gui, "", s:grid9_term, "", "", "")
-call s:hi("Float", s:grid15_gui, "", s:grid15_term, "", "", "")
-call s:hi("Function", s:grid8_gui, "", s:grid8_term, "", "", "")
-call s:hi("Keyword", s:grid6_gui, "", s:grid6_term, "", "", "")
-call s:hi("Label", s:grid9_gui, "", s:grid9_term, "", "", "")
-call s:hi("Number", s:grid15_gui, "", s:grid15_term, "", "", "")
-call s:hi("Operator", s:grid9_gui, "", s:grid9_term, "", "NONE", "")
-call s:hi("PreProc", s:grid9_gui, "", s:grid9_term, "", "NONE", "")
-call s:hi("Repeat", s:grid9_gui, "", s:grid9_term, "", "", "")
-call s:hi("Special", s:grid4_gui, "", "NONE", "", "", "")
-call s:hi("SpecialChar", s:grid13_gui, "", s:grid13_term, "", "", "")
-call s:hi("SpecialComment", s:grid8_gui, "", s:grid8_term, "", s:italic, "")
-call s:hi("Statement", s:grid9_gui, "", s:grid9_term, "", "", "")
-call s:hi("StorageClass", s:grid9_gui, "", s:grid9_term, "", "", "")
-call s:hi("String", s:grid14_gui, "", s:grid14_term, "", "", "")
-call s:hi("Structure", s:grid9_gui, "", s:grid9_term, "", "", "")
-call s:hi("Tag", s:grid4_gui, "", "", "", "", "")
-call s:hi("Todo", s:grid13_gui, "NONE", s:grid13_term, "NONE", "", "")
-call s:hi("Type", s:grid9_gui, "", s:grid9_term, "", "NONE", "")
-call s:hi("Typedef", s:grid9_gui, "", s:grid9_term, "", "", "")
+call s:hi("Conditional", s:cluless9_gui, "", s:cluless9_term, "", "", "")
+call s:hi("Constant", s:cluless4_gui, "", "NONE", "", "", "")
+call s:hi("Decorator", s:cluless12_gui, "", s:cluless12_term, "", "", "")
+call s:hi("Define", s:cluless9_gui, "", s:cluless9_term, "", s:bold, "")
+call s:hi("Delimiter", s:cluless6_gui, "", s:cluless6_term, "", "", "")
+call s:hi("Exception", s:cluless9_gui, "", s:cluless9_term, "", "", "")
+call s:hi("Float", s:cluless15_gui, "", s:cluless15_term, "", "", "")
+call s:hi("Function", s:cluless8_gui, "", s:cluless8_term, "", "", "")
+call s:hi("Keyword", s:cluless6_gui, "", s:cluless6_term, "", "", "")
+call s:hi("Label", s:cluless9_gui, "", s:cluless9_term, "", "", "")
+call s:hi("Number", s:cluless15_gui, "", s:cluless15_term, "", "", "")
+call s:hi("Operator", s:cluless9_gui, "", s:cluless9_term, "", "NONE", "")
+call s:hi("PreProc", s:cluless9_gui, "", s:cluless9_term, "", "NONE", "")
+call s:hi("Repeat", s:cluless9_gui, "", s:cluless9_term, "", "", "")
+call s:hi("Special", s:cluless4_gui, "", "NONE", "", "", "")
+call s:hi("SpecialChar", s:cluless13_gui, "", s:cluless13_term, "", "", "")
+call s:hi("SpecialComment", s:cluless8_gui, "", s:cluless8_term, "", s:italic, "")
+call s:hi("Statement", s:cluless9_gui, "", s:cluless9_term, "", "", "")
+call s:hi("StorageClass", s:cluless9_gui, "", s:cluless9_term, "", "", "")
+call s:hi("String", s:cluless14_gui, "", s:cluless14_term, "", "", "")
+call s:hi("Structure", s:cluless9_gui, "", s:cluless9_term, "", "", "")
+call s:hi("Tag", s:cluless4_gui, "", "", "", "", "")
+call s:hi("Todo", s:cluless13_gui, "NONE", s:cluless13_term, "NONE", "", "")
+call s:hi("Type", s:cluless9_gui, "", s:cluless9_term, "", "NONE", "")
+call s:hi("Typedef", s:cluless9_gui, "", s:cluless9_term, "", "", "")
 hi! link Identifier Keyword
 hi! link Include Keyword
 hi! link IncSearch Search
@@ -195,16 +195,16 @@ hi! link Macro Define
 hi! link PreCondit PreProc
 hi! link Variable Identifier
 
-call s:hi("asciidocAttributeEntry", s:grid10_gui, "", s:grid10_term, "", "", "")
-call s:hi("asciidocAttributeList", s:grid10_gui, "", s:grid10_term, "", "", "")
-call s:hi("asciidocAttributeRef", s:grid10_gui, "", s:grid10_term, "", "", "")
-call s:hi("asciidocHLabel", s:grid9_gui, "", s:grid9_term, "", "", "")
-call s:hi("asciidocListingBlock", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("asciidocMacroAttributes", s:grid8_gui, "", s:grid8_term, "", "", "")
-call s:hi("asciidocOneLineTitle", s:grid8_gui, "", s:grid8_term, "", "", "")
-call s:hi("asciidocPassthroughBlock", s:grid9_gui, "", s:grid9_term, "", "", "")
-call s:hi("asciidocQuotedMonospaced", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("asciidocTriplePlusPassthrough", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("asciidocAttributeEntry", s:cluless10_gui, "", s:cluless10_term, "", "", "")
+call s:hi("asciidocAttributeList", s:cluless10_gui, "", s:cluless10_term, "", "", "")
+call s:hi("asciidocAttributeRef", s:cluless10_gui, "", s:cluless10_term, "", "", "")
+call s:hi("asciidocHLabel", s:cluless9_gui, "", s:cluless9_term, "", "", "")
+call s:hi("asciidocListingBlock", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("asciidocMacroAttributes", s:cluless8_gui, "", s:cluless8_term, "", "", "")
+call s:hi("asciidocOneLineTitle", s:cluless8_gui, "", s:cluless8_term, "", "", "")
+call s:hi("asciidocPassthroughBlock", s:cluless9_gui, "", s:cluless9_term, "", "", "")
+call s:hi("asciidocQuotedMonospaced", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("asciidocTriplePlusPassthrough", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link asciidocAdmonition Keyword
 hi! link asciidocAttributeRef markdownH1
 hi! link asciidocBackslash Keyword
@@ -216,8 +216,8 @@ hi! link asciidocQuotedUnconstrainedBold asciidocQuotedBold
 hi! link asciidocQuotedUnconstrainedEmphasized asciidocQuotedEmphasized
 hi! link asciidocURL markdownLinkText
 
-call s:hi("awkCharClass", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("awkPatterns", s:grid9_gui, "", s:grid9_term, "", s:bold, "")
+call s:hi("awkCharClass", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("awkPatterns", s:cluless9_gui, "", s:cluless9_term, "", s:bold, "")
 hi! link awkArrayElement Identifier
 hi! link awkBoolLogic Keyword
 hi! link awkBrktRegExp SpecialChar
@@ -233,21 +233,21 @@ hi! link awkSpecialCharacter SpecialChar
 hi! link awkSpecialPrintf SpecialChar
 hi! link awkVariables Identifier
 
-call s:hi("cIncluded", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("cIncluded", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link cOperator Operator
 hi! link cPreCondit PreCondit
 hi! link cConstant Type
 
-call s:hi("cmakeGeneratorExpression", s:grid10_gui, "", s:grid10_term, "", "", "")
+call s:hi("cmakeGeneratorExpression", s:cluless10_gui, "", s:cluless10_term, "", "", "")
 
 hi! link csPreCondit PreCondit
 hi! link csType Type
 hi! link csXmlTag SpecialComment
 
-call s:hi("cssAttributeSelector", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("cssDefinition", s:grid7_gui, "", s:grid7_term, "", "NONE", "")
-call s:hi("cssIdentifier", s:grid7_gui, "", s:grid7_term, "", s:underline, "")
-call s:hi("cssStringQ", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("cssAttributeSelector", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("cssDefinition", s:cluless7_gui, "", s:cluless7_term, "", "NONE", "")
+call s:hi("cssIdentifier", s:cluless7_gui, "", s:cluless7_term, "", s:underline, "")
+call s:hi("cssStringQ", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link cssAttr Keyword
 hi! link cssBraces Delimiter
 hi! link cssClassName cssDefinition
@@ -257,37 +257,37 @@ hi! link cssPseudoClass cssDefinition
 hi! link cssPseudoClassId cssPseudoClass
 hi! link cssVendor Keyword
 
-call s:hi("dosiniHeader", s:grid8_gui, "", s:grid8_term, "", "", "")
+call s:hi("dosiniHeader", s:cluless8_gui, "", s:cluless8_term, "", "", "")
 hi! link dosiniLabel Type
 
-call s:hi("dtBooleanKey", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("dtExecKey", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("dtLocaleKey", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("dtNumericKey", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("dtTypeKey", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("dtBooleanKey", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("dtExecKey", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("dtLocaleKey", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("dtNumericKey", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("dtTypeKey", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link dtDelim Delimiter
 hi! link dtLocaleValue Keyword
 hi! link dtTypeValue Keyword
 
-call s:hi("DiffAdd", s:grid14_gui, s:grid0_gui, s:grid14_term, "NONE", "inverse", "")
-call s:hi("DiffChange", s:grid13_gui, s:grid0_gui, s:grid13_term, "NONE", "inverse", "")
-call s:hi("DiffDelete", s:grid11_gui, s:grid0_gui, s:grid11_term, "NONE", "inverse", "")
-call s:hi("DiffText", s:grid9_gui, s:grid0_gui, s:grid9_term, "NONE", "inverse", "")
+call s:hi("DiffAdd", s:cluless14_gui, s:cluless0_gui, s:cluless14_term, "NONE", "inverse", "")
+call s:hi("DiffChange", s:cluless13_gui, s:cluless0_gui, s:cluless13_term, "NONE", "inverse", "")
+call s:hi("DiffDelete", s:cluless11_gui, s:cluless0_gui, s:cluless11_term, "NONE", "inverse", "")
+call s:hi("DiffText", s:cluless9_gui, s:cluless0_gui, s:cluless9_term, "NONE", "inverse", "")
 " Legacy groups for official git.vim and diff.vim syntax
 hi! link diffAdded DiffAdd
 hi! link diffChanged DiffChange
 hi! link diffRemoved DiffDelete
 
-call s:hi("gitconfigVariable", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("gitconfigVariable", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 
-call s:hi("goBuiltins", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("goBuiltins", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link goConstants Keyword
 
-call s:hi("helpBar", s:grid3_gui, "", s:grid3_term, "", "", "")
-call s:hi("helpHyperTextJump", s:grid8_gui, "", s:grid8_term, "", s:underline, "")
+call s:hi("helpBar", s:cluless3_gui, "", s:cluless3_term, "", "", "")
+call s:hi("helpHyperTextJump", s:cluless8_gui, "", s:cluless8_term, "", s:underline, "")
 
-call s:hi("htmlArg", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("htmlLink", s:grid4_gui, "", "", "", "NONE", "NONE")
+call s:hi("htmlArg", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("htmlLink", s:cluless4_gui, "", "", "", "NONE", "NONE")
 hi! link htmlBold Bold
 hi! link htmlEndTag htmlTag
 hi! link htmlItalic Italic
@@ -301,13 +301,13 @@ hi! link htmlSpecialChar SpecialChar
 hi! link htmlTag Keyword
 hi! link htmlTagN htmlTag
 
-call s:hi("javaDocTags", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("javaDocTags", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link javaCommentTitle Comment
 hi! link javaScriptBraces Delimiter
 hi! link javaScriptIdentifier Keyword
 hi! link javaScriptNumber Number
 
-call s:hi("jsonKeyword", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("jsonKeyword", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 
 hi! link lispAtomBarSymbol SpecialChar
 hi! link lispAtomList SpecialChar
@@ -317,15 +317,15 @@ hi! link lispFunc Function
 
 hi! link luaFunc Function
 
-call s:hi("markdownBlockquote", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("markdownCode", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("markdownCodeDelimiter", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("markdownFootnote", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("markdownId", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("markdownIdDeclaration", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("markdownH1", s:grid8_gui, "", s:grid8_term, "", "", "")
-call s:hi("markdownLinkText", s:grid8_gui, "", s:grid8_term, "", "", "")
-call s:hi("markdownUrl", s:grid4_gui, "", "NONE", "", "NONE", "")
+call s:hi("markdownBlockquote", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("markdownCode", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("markdownCodeDelimiter", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("markdownFootnote", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("markdownId", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("markdownIdDeclaration", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("markdownH1", s:cluless8_gui, "", s:cluless8_term, "", "", "")
+call s:hi("markdownLinkText", s:cluless8_gui, "", s:cluless8_term, "", "", "")
+call s:hi("markdownUrl", s:cluless4_gui, "", "NONE", "", "NONE", "")
 hi! link markdownBold Bold
 hi! link markdownBoldDelimiter Keyword
 hi! link markdownFootnoteDefinition markdownFootnote
@@ -343,22 +343,22 @@ hi! link markdownListMarker Keyword
 hi! link markdownRule Keyword
 hi! link markdownHeadingDelimiter Keyword
 
-call s:hi("perlPackageDecl", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("perlPackageDecl", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 
-call s:hi("phpClasses", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("phpDocTags", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("phpClasses", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("phpDocTags", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link phpDocCustomTags phpDocTags
 hi! link phpMemberSelector Keyword
 
-call s:hi("podCmdText", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("podVerbatimLine", s:grid4_gui, "", "NONE", "", "", "")
+call s:hi("podCmdText", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("podVerbatimLine", s:cluless4_gui, "", "NONE", "", "", "")
 hi! link podFormat Keyword
 
 hi! link pythonBuiltin Type
 hi! link pythonEscape SpecialChar
 
-call s:hi("rubyConstant", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("rubySymbol", s:grid6_gui, "", s:grid6_term, "", s:bold, "")
+call s:hi("rubyConstant", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("rubySymbol", s:cluless6_gui, "", s:cluless6_term, "", s:bold, "")
 hi! link rubyAttribute Identifier
 hi! link rubyBlockParameterList Operator
 hi! link rubyInterpolationDelimiter Keyword
@@ -367,20 +367,20 @@ hi! link rubyLocalVariableOrMethod Function
 hi! link rubyPseudoVariable Keyword
 hi! link rubyRegexp SpecialChar
 
-call s:hi("rustAttribute", s:grid10_gui, "", s:grid10_term, "", "", "")
-call s:hi("rustEnum", s:grid7_gui, "", s:grid7_term, "", s:bold, "")
-call s:hi("rustMacro", s:grid8_gui, "", s:grid8_term, "", s:bold, "")
-call s:hi("rustModPath", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("rustPanic", s:grid9_gui, "", s:grid9_term, "", s:bold, "")
-call s:hi("rustTrait", s:grid7_gui, "", s:grid7_term, "", s:italic, "")
+call s:hi("rustAttribute", s:cluless10_gui, "", s:cluless10_term, "", "", "")
+call s:hi("rustEnum", s:cluless7_gui, "", s:cluless7_term, "", s:bold, "")
+call s:hi("rustMacro", s:cluless8_gui, "", s:cluless8_term, "", s:bold, "")
+call s:hi("rustModPath", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("rustPanic", s:cluless9_gui, "", s:cluless9_term, "", s:bold, "")
+call s:hi("rustTrait", s:cluless7_gui, "", s:cluless7_term, "", s:italic, "")
 hi! link rustCommentLineDoc Comment
 hi! link rustDerive rustAttribute
 hi! link rustEnumVariant rustEnum
 hi! link rustEscape SpecialChar
 hi! link rustQuestionMark Keyword
 
-call s:hi("sassClass", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("sassId", s:grid7_gui, "", s:grid7_term, "", s:underline, "")
+call s:hi("sassClass", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("sassId", s:cluless7_gui, "", s:cluless7_term, "", s:underline, "")
 hi! link sassAmpersand Keyword
 hi! link sassClassChar Delimiter
 hi! link sassControl Keyword
@@ -403,16 +403,16 @@ hi! link shDerefVar Identifier
 hi! link sqlKeyword Keyword
 hi! link sqlSpecial Keyword
 
-call s:hi("vimAugroup", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("vimMapRhs", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("vimNotation", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("vimAugroup", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("vimMapRhs", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("vimNotation", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link vimFunc Function
 hi! link vimFunction Function
 hi! link vimUserFunc Function
 
-call s:hi("xmlAttrib", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("xmlCdataStart", s:grid_comment, "", s:grid3_term, "", s:bold, "")
-call s:hi("xmlNamespace", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("xmlAttrib", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("xmlCdataStart", s:cluless_comment, "", s:cluless3_term, "", s:bold, "")
+call s:hi("xmlNamespace", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link xmlAttribPunct Delimiter
 hi! link xmlCdata Comment
 hi! link xmlCdataCdata xmlCdataStart
@@ -421,52 +421,52 @@ hi! link xmlEndTag xmlTagName
 hi! link xmlProcessingDelim Keyword
 hi! link xmlTagName Keyword
 
-call s:hi("yamlBlockMappingKey", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("yamlBlockMappingKey", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link yamlBool Keyword
 hi! link yamlDocumentStart Keyword
 
 
 " Neovim LSP
 " > neovim/nvim-lspconfig
-call s:hi("LspCodeLens", s:grid_comment, "", s:grid3_term, "", "", "")
+call s:hi("LspCodeLens", s:cluless_comment, "", s:cluless3_term, "", "", "")
 if has("nvim-0.5")
-  call s:hi("LspDiagnosticsDefaultWarning", s:grid13_gui, "", s:grid13_term, "", "", "")
-  call s:hi("LspDiagnosticsDefaultError" , s:grid11_gui, "", s:grid11_term, "", "", "")
-  call s:hi("LspDiagnosticsDefaultInformation" , s:grid8_gui, "", s:grid8_term, "", "", "")
-  call s:hi("LspDiagnosticsDefaultHint" , s:grid10_gui, "", s:grid10_term, "", "", "")
-  call s:hi("LspDiagnosticsUnderlineWarning" , s:grid13_gui, "", s:grid13_term, "", "undercurl", "")
-  call s:hi("LspDiagnosticsUnderlineError" , s:grid11_gui, "", s:grid11_term, "", "undercurl", "")
-  call s:hi("LspDiagnosticsUnderlineInformation" , s:grid8_gui, "", s:grid8_term, "", "undercurl", "")
-  call s:hi("LspDiagnosticsUnderlineHint" , s:grid10_gui, "", s:grid10_term, "", "undercurl", "")
+  call s:hi("LspDiagnosticsDefaultWarning", s:cluless13_gui, "", s:cluless13_term, "", "", "")
+  call s:hi("LspDiagnosticsDefaultError" , s:cluless11_gui, "", s:cluless11_term, "", "", "")
+  call s:hi("LspDiagnosticsDefaultInformation" , s:cluless8_gui, "", s:cluless8_term, "", "", "")
+  call s:hi("LspDiagnosticsDefaultHint" , s:cluless10_gui, "", s:cluless10_term, "", "", "")
+  call s:hi("LspDiagnosticsUnderlineWarning" , s:cluless13_gui, "", s:cluless13_term, "", "undercurl", "")
+  call s:hi("LspDiagnosticsUnderlineError" , s:cluless11_gui, "", s:cluless11_term, "", "undercurl", "")
+  call s:hi("LspDiagnosticsUnderlineInformation" , s:cluless8_gui, "", s:cluless8_term, "", "undercurl", "")
+  call s:hi("LspDiagnosticsUnderlineHint" , s:cluless10_gui, "", s:cluless10_term, "", "undercurl", "")
 endif
 
 " GitGutter
 " > airblade/vim-gitgutter
-call s:hi("GitGutterAdd", s:grid14_gui, "", s:grid14_term, "", "", "")
-call s:hi("GitGutterChange", s:grid13_gui, "", s:grid13_term, "", "", "")
-call s:hi("GitGutterChangeDelete", s:grid11_gui, "", s:grid11_term, "", "", "")
-call s:hi("GitGutterDelete", s:grid11_gui, "", s:grid11_term, "", "", "")
+call s:hi("GitGutterAdd", s:cluless14_gui, "", s:cluless14_term, "", "", "")
+call s:hi("GitGutterChange", s:cluless13_gui, "", s:cluless13_term, "", "", "")
+call s:hi("GitGutterChangeDelete", s:cluless11_gui, "", s:cluless11_term, "", "", "")
+call s:hi("GitGutterDelete", s:cluless11_gui, "", s:cluless11_term, "", "", "")
 
 " NERDTree
 " > scrooloose/nerdtree
-call s:hi("NERDTreeExecFile", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("NERDTreeExecFile", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link NERDTreeDirSlash Keyword
 hi! link NERDTreeHelp Comment
 
 " vim-indent-guides
 " > nathanaelkane/vim-indent-guides
-call s:hi("IndentGuidesEven", "", s:grid1_gui, "", s:grid1_term, "", "")
-call s:hi("IndentGuidesOdd", "", s:grid2_gui, "", s:grid3_term, "", "")
+call s:hi("IndentGuidesEven", "", s:cluless1_gui, "", s:cluless1_term, "", "")
+call s:hi("IndentGuidesOdd", "", s:cluless2_gui, "", s:cluless3_term, "", "")
 
 " Haskell
 " > neovimhaskell/haskell-vim
-call s:hi("haskellPreProc", s:grid10_gui, "", s:grid10_term, "", "", "")
-call s:hi("haskellType", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("haskellPreProc", s:cluless10_gui, "", s:cluless10_term, "", "", "")
+call s:hi("haskellType", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link haskellPragma haskellPreProc
 
 " JavaScript
 " > pangloss/vim-javascript
-call s:hi("jsGlobalNodeObjects", s:grid8_gui, "", s:grid8_term, "", s:italic, "")
+call s:hi("jsGlobalNodeObjects", s:cluless8_gui, "", s:cluless8_term, "", s:italic, "")
 hi! link jsBrackets Delimiter
 hi! link jsFuncCall Function
 hi! link jsFuncParens Delimiter
@@ -477,8 +477,8 @@ hi! link jsRegexpString SpecialChar
 
 " Pandoc
 " > vim-pandoc/vim-pandoc-syntax
-call s:hi("pandocDefinitionBlockTerm", s:grid7_gui, "", s:grid7_term, "", s:italic, "")
-call s:hi("pandocTableDelims", s:grid3_gui, "", s:grid3_term, "", "", "")
+call s:hi("pandocDefinitionBlockTerm", s:cluless7_gui, "", s:cluless7_term, "", s:italic, "")
+call s:hi("pandocTableDelims", s:cluless3_gui, "", s:cluless3_term, "", "", "")
 hi! link pandocAtxHeader markdownH1
 hi! link pandocBlockQuote markdownBlockquote
 hi! link pandocCiteAnchor Operator
@@ -520,13 +520,13 @@ endif
 
 " TypeScript
 " > HerringtonDarkholme/yats.vim
-call s:hi("typescriptBOMWindowMethod", s:grid8_gui, "", s:grid8_term, "", s:italic, "")
-call s:hi("typescriptClassName", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("typescriptDecorator", s:grid12_gui, "", s:grid12_term, "", "", "")
-call s:hi("typescriptInterfaceName", s:grid7_gui, "", s:grid7_term, "", s:bold, "")
-call s:hi("typescriptRegexpString", s:grid13_gui, "", s:grid13_term, "", "", "")
+call s:hi("typescriptBOMWindowMethod", s:cluless8_gui, "", s:cluless8_term, "", s:italic, "")
+call s:hi("typescriptClassName", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("typescriptDecorator", s:cluless12_gui, "", s:cluless12_term, "", "", "")
+call s:hi("typescriptInterfaceName", s:cluless7_gui, "", s:cluless7_term, "", s:bold, "")
+call s:hi("typescriptRegexpString", s:cluless13_gui, "", s:cluless13_term, "", "", "")
 " TypeScript JSX
- call s:hi("tsxAttrib", s:grid7_gui, "", s:grid7_term, "", "", "")
+ call s:hi("tsxAttrib", s:cluless7_gui, "", s:cluless7_term, "", "", "")
 hi! link typescriptOperator Operator
 hi! link typescriptBinaryOp Operator
 hi! link typescriptAssign Operator
@@ -561,10 +561,10 @@ hi! link tsxTagName tsxIntrinsicTagName
 
 " Markdown
 " > plasticboy/vim-markdown
-call s:hi("mkdCode", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("mkdFootnote", s:grid8_gui, "", s:grid8_term, "", "", "")
-call s:hi("mkdRule", s:grid10_gui, "", s:grid10_term, "", "", "")
-call s:hi("mkdLineBreak", s:grid9_gui, "", s:grid9_term, "", "", "")
+call s:hi("mkdCode", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("mkdFootnote", s:cluless8_gui, "", s:cluless8_term, "", "", "")
+call s:hi("mkdRule", s:cluless10_gui, "", s:cluless10_term, "", "", "")
+call s:hi("mkdLineBreak", s:cluless9_gui, "", s:cluless9_term, "", "", "")
 hi! link mkdBold Bold
 hi! link mkdItalic Italic
 hi! link mkdString Keyword
@@ -585,8 +585,8 @@ hi! link mkdDelimiter Keyword
 
 " PHP
 " > StanAngeloff/php.vim
-call s:hi("phpClass", s:grid7_gui, "", s:grid7_term, "", "", "")
-call s:hi("phpClassImplements", s:grid7_gui, "", s:grid7_term, "", s:bold, "")
+call s:hi("phpClass", s:cluless7_gui, "", s:cluless7_term, "", "", "")
+call s:hi("phpClassImplements", s:cluless7_gui, "", s:cluless7_term, "", s:bold, "")
 hi! link phpClassExtends phpClass
 hi! link phpFunction Function
 hi! link phpMethod Function
@@ -594,4 +594,4 @@ hi! link phpUseClass phpClass
 
 " YAML
 " > stephpy/vim-yaml
-call s:hi("yamlKey", s:grid7_gui, "", s:grid7_term, "", "", "")
+call s:hi("yamlKey", s:cluless7_gui, "", s:cluless7_term, "", "", "")
