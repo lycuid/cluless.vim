@@ -96,7 +96,7 @@ call s:hi("SpellBad", s:cluless11_gui, s:cluless0_gui, s:cluless11_term, "NONE",
 call s:hi("SpellCap", s:cluless13_gui, s:cluless0_gui, s:cluless13_term, "NONE", "undercurl", s:cluless13_gui)
 call s:hi("SpellLocal", s:cluless5_gui, s:cluless0_gui, s:cluless5_term, "NONE", "undercurl", s:cluless5_gui)
 call s:hi("SpellRare", s:cluless6_gui, s:cluless0_gui, s:cluless6_term, "NONE", "undercurl", s:cluless6_gui)
-call s:hi("Visual", "", s:cluless1_gui, "", s:cluless1_term, s:bold, "")
+call s:hi("Visual", s:cluless6_gui, s:cluless10_gui, s:cluless6_term, s:cluless10_term, s:bold, "")
 call s:hi("healthError", s:cluless11_gui, s:cluless1_gui, s:cluless11_term, s:cluless1_term, "", "")
 call s:hi("healthSuccess", s:cluless14_gui, s:cluless1_gui, s:cluless14_term, s:cluless1_term, "", "")
 call s:hi("healthWarning", s:cluless13_gui, s:cluless1_gui, s:cluless13_term, s:cluless1_term, "", "")
